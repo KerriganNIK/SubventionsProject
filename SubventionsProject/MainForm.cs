@@ -14,7 +14,7 @@ namespace SubventionsProject
 {
     public partial class MainForm : MaterialForm
     {
-        public MainForm()
+        public MainForm(Boolean check)
         {
             InitializeComponent();
 
@@ -22,6 +22,15 @@ namespace SubventionsProject
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
+            AddButton.Visible = check;
+            AddButton.Enabled = check;
+            DeleteButton.Visible = check;
+            DeleteButton.Enabled = check;
+            OpenButton.Visible = check;
+            OpenButton.Enabled = check;
+
+            ShowDialog();
         }
 
         private void ExitButton_Click(object sender, EventArgs e) => Application.Restart();
@@ -30,14 +39,14 @@ namespace SubventionsProject
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            RegistrationCardForm registration = new RegistrationCardForm();
-            registration.ShowDialog();
+            //RegistrationCardForm registration = new RegistrationCardForm();
+            //registration.ShowDialog();
         }
 
         private void FillterButton_Click(object sender, EventArgs e)
         {
-            FilterForm filterForm = new FilterForm();
-            filterForm.ShowDialog();
+            //FilterForm filterForm = new FilterForm();
+            //filterForm.ShowDialog();
         }
     }
 }

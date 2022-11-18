@@ -14,6 +14,8 @@ namespace SubventionsProject
 {
     public partial class AuthorizationForm : MaterialForm
     {
+        private AuthorizationModel authorization;
+
         public AuthorizationForm()
         {
             InitializeComponent();
@@ -24,28 +26,21 @@ namespace SubventionsProject
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
 
             PasswordText.PasswordChar = '*';
+
+            authorization = new AuthorizationModel(this);
         }
 
         private void CloseButton_Click(object sender, EventArgs e) => Close();
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            Condition condition = Condition.Initialize(mainForm);
-
-            if (LoginText.Text == "Admin" && PasswordText.Text == "123")
+            if (LoginText.Text != "" && PasswordText.Text != "")
             {
-                Hide();
-                condition.AdminOpen();
-            }
-            else if (LoginText.Text == "User" && PasswordText.Text == "123")
-            {
-                Hide();
-                condition.UserOpen();
+                authorization.AuthoriztionUser(LoginText.Text, PasswordText.Text);
             }
             else
             {
-                MessageBox.Show("Не правильный логин или пароль!");
+                MessageBox.Show("Не все поля заполнены!");
             }
         }
     }
