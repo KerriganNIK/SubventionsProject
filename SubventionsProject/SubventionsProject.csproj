@@ -49,20 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorizationForm.cs">
+    <Compile Include="Authorization\AuthorizationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthorizationForm.Designer.cs">
+    <Compile Include="Authorization\AuthorizationForm.Designer.cs">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthorizationModel.cs" />
-    <Compile Include="Condition.cs" />
-    <Compile Include="FilterForm.cs">
+    <Compile Include="Authorization\AuthorizationModel.cs" />
+    <Compile Include="DateBase.cs" />
+    <Compile Include="ExcelModel.cs" />
+    <Compile Include="Fillter\FilterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FilterForm.Designer.cs">
+    <Compile Include="Fillter\FilterForm.Designer.cs">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fillter\FilterModel.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,16 +73,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationCardForm.cs">
+    <Compile Include="Registration\RegistrationCardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrationCardForm.Designer.cs">
+    <Compile Include="Registration\RegistrationCardForm.Designer.cs">
       <DependentUpon>RegistrationCardForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AuthorizationForm.resx">
+    <Compile Include="Registration\RegistrationModel.cs" />
+    <Compile Include="SubventionCard\SubventhionCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubventionCard\SubventhionCardForm.Designer.cs">
+      <DependentUpon>SubventhionCardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubventionCard\SubventionCardModel.cs" />
+    <EmbeddedResource Include="Authorization\AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FilterForm.resx">
+    <EmbeddedResource Include="Fillter\FilterForm.resx">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -95,8 +105,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RegistrationCardForm.resx">
+    <EmbeddedResource Include="Registration\RegistrationCardForm.resx">
       <DependentUpon>RegistrationCardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubventionCard\SubventhionCardForm.resx">
+      <DependentUpon>SubventhionCardForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

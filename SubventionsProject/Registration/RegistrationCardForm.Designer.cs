@@ -68,6 +68,7 @@
             this.OkButton.TabIndex = 26;
             this.OkButton.Text = "ОК";
             this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // dateTimePicker1
             // 

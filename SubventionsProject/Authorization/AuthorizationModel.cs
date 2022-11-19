@@ -12,6 +12,7 @@ namespace SubventionsProject
         private AuthorizationForm authorization;
         private const Boolean Admin = true;
         private const Boolean User = false;
+        private MainForm mainForm;
 
         public AuthorizationModel(AuthorizationForm authorization)
         {
@@ -22,11 +23,11 @@ namespace SubventionsProject
         {
             if (login == "Admin" && password == "123")
             {
-                OpenMainForm(Admin);
+                OpenMain(Admin);
             }
             else if (login == "User" && password == "123")
             {
-                OpenMainForm(User);
+                OpenMain(User);
             }
             else
             {
@@ -34,10 +35,11 @@ namespace SubventionsProject
             }
         }
 
-        public void OpenMainForm(Boolean check)
+        public void OpenMain(Boolean check)
         {
+            mainForm = MainForm.Initialize();
             authorization.Hide();
-            MainForm form = new MainForm(check);
+            mainForm.OpenMainForm(check);
         }
     }
 }

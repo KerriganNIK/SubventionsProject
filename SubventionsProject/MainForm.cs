@@ -14,7 +14,13 @@ namespace SubventionsProject
 {
     public partial class MainForm : MaterialForm
     {
-        public MainForm(Boolean check)
+        private RegistrationCardForm registration;
+        private FilterForm filterForm;
+        private SubventhionCardForm subventhionCard;
+        private ExcelModel excelModel;
+        private static MainForm mainForm = null;
+
+        public MainForm()
         {
             InitializeComponent();
 
@@ -22,15 +28,14 @@ namespace SubventionsProject
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+        }
 
-            AddButton.Visible = check;
-            AddButton.Enabled = check;
-            DeleteButton.Visible = check;
-            DeleteButton.Enabled = check;
-            OpenButton.Visible = check;
-            OpenButton.Enabled = check;
+        public static MainForm Initialize()
+        {
+            if (mainForm == null)
+                mainForm = new MainForm();
 
-            ShowDialog();
+            return mainForm;
         }
 
         private void ExitButton_Click(object sender, EventArgs e) => Application.Restart();
@@ -39,14 +44,52 @@ namespace SubventionsProject
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            //RegistrationCardForm registration = new RegistrationCardForm();
-            //registration.ShowDialog();
+            registration = new RegistrationCardForm();
+            registration.ShowDialog();
         }
 
         private void FillterButton_Click(object sender, EventArgs e)
         {
-            //FilterForm filterForm = new FilterForm();
-            //filterForm.ShowDialog();
+            filterForm = new FilterForm();
+            filterForm.ShowDialog();
+        }
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            subventhionCard = new SubventhionCardForm();
+            subventhionCard.ShowDialog();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            int index = dataGridView1.CurrentRow.Index;
+            dataGridView1.Rows.Remove(dataGridView1.Rows[index]);
+        }
+
+        public void OpenMainForm(Boolean check)
+        {
+            AddButton.Visible = check;
+            AddButton.Enabled = check;
+            DeleteButton.Visible = check;
+            DeleteButton.Enabled = check;
+
+            ShowDialog();
+        }
+
+        public void UpdateDate()
+        {
+            //Обновление datagrid
+        }
+
+        public void StatusExcel() => MessageBox.Show("Успешно!");
+
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+            if(dataGridView1.Rows.Count > 0)
+            {
+                excelModel = new ExcelModel();
+                excelModel.Export();
+            }
         }
     }
 }

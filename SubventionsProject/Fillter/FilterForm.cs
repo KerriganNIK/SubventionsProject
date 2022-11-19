@@ -14,6 +14,7 @@ namespace SubventionsProject
 {
     public partial class FilterForm : MaterialForm
     {
+        FilterModel filterModel;
         public FilterForm()
         {
             InitializeComponent();
@@ -25,5 +26,11 @@ namespace SubventionsProject
         }
 
         private void CloseButton_Click(object sender, EventArgs e) => Close();
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            filterModel = new FilterModel(comboBox2.Text, comboBox3.Text, dateTimePicker1.Text, Convert.ToDouble(comboBox4.Text), comboBox5.Text);
+            Close();
+        }
     }
 }
