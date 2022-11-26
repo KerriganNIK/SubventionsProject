@@ -40,6 +40,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.OkButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CloseButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -157,11 +159,31 @@
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(404, 99);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(318, 21);
+            this.comboBox1.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label1.Location = new System.Drawing.Point(102, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(282, 24);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Муниципальное образование:";
+            // 
             // FilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 447);
+            this.ClientSize = new System.Drawing.Size(802, 417);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.dateTimePicker1);
@@ -194,5 +216,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private MaterialSkin.Controls.MaterialRaisedButton OkButton;
         private MaterialSkin.Controls.MaterialRaisedButton CloseButton;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

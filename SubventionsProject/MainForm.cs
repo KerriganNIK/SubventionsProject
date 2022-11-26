@@ -14,11 +14,12 @@ namespace SubventionsProject
 {
     public partial class MainForm : MaterialForm
     {
+        private static MainForm mainForm = null;
         private RegistrationCardForm registration;
         private FilterForm filterForm;
         private SubventhionCardForm subventhionCard;
         private ExcelModel excelModel;
-        private static MainForm mainForm = null;
+        private DeleteDataModel deleteData;
 
         public MainForm()
         {
@@ -28,6 +29,8 @@ namespace SubventionsProject
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
+            filterForm = new FilterForm();
         }
 
         public static MainForm Initialize()
@@ -42,54 +45,69 @@ namespace SubventionsProject
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
 
+        private void FillterButton_Click(object sender, EventArgs e) => filterForm.ShowDialog();
+
         private void AddButton_Click(object sender, EventArgs e)
         {
-            registration = new RegistrationCardForm();
-            registration.ShowDialog();
-        }
+            //Мб по другому ID получать 
 
-        private void FillterButton_Click(object sender, EventArgs e)
-        {
-            filterForm = new FilterForm();
-            filterForm.ShowDialog();
+            registration = new RegistrationCardForm(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            registration.ShowDialog();
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
-            subventhionCard = new SubventhionCardForm();
+            subventhionCard = new SubventhionCardForm(dataGridView1.CurrentRow.Cells[0].Value.ToString(), dataGridView1.CurrentRow.Cells[1].Value.ToString(), dataGridView1.CurrentRow.Cells[2].Value.ToString(), dataGridView1.CurrentRow.Cells[3].Value.ToString(), dataGridView1.CurrentRow.Cells[4].Value.ToString()/*, dataGridView1.CurrentRow.Cells[5].Value.ToString()*/);
             subventhionCard.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            int index = dataGridView1.CurrentRow.Index;
-            dataGridView1.Rows.Remove(dataGridView1.Rows[index]);
+            deleteData = new DeleteDataModel(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            deleteData.Delete();
         }
 
         public void OpenMainForm(Boolean check)
         {
+            UpdateData();
+
             AddButton.Visible = check;
             AddButton.Enabled = check;
             DeleteButton.Visible = check;
             DeleteButton.Enabled = check;
 
+            //dataGridView1.Columns[0].HeaderText = "Id субвенции";
+            //dataGridView1.Columns[0].Visible = false;
+
+            dataGridView1.Columns[0].HeaderText = "Муниципальное образование";
+            dataGridView1.Columns[1].HeaderText = "Получатель";
+            dataGridView1.Columns[2].HeaderText = "Распределитель";
+            dataGridView1.Columns[3].HeaderText = "Сумма субвенции";
+            dataGridView1.Columns[4].HeaderText = "Год выдачи";
+            dataGridView1.Columns[5].HeaderText = "Дата получения денежных средств";
+
             ShowDialog();
         }
 
-        public void UpdateDate()
+        public void UpdateData()
         {
-            //Обновление datagrid
-        }
+            if (DataBase.dataSet != null)
+                DataBase.dataSet.Clear();
 
-        public void StatusExcel() => MessageBox.Show("Успешно!");
+            //Данные из БД
+
+            dataGridView1.DataSource = DataBase.dataSet.Tables["Subvention"];
+        }
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.Rows.Count > 0)
+            if (dataGridView1.Rows.Count > 0)
             {
                 excelModel = new ExcelModel();
                 excelModel.Export();
             }
         }
+
+        //public void StatusExcel() => MessageBox.Show("Успешно!");
     }
 }

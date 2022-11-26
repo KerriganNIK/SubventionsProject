@@ -166,6 +166,6 @@
         public MaterialSkin.Controls.MaterialRaisedButton AddButton;
         public MaterialSkin.Controls.MaterialRaisedButton DeleteButton;
         public MaterialSkin.Controls.MaterialRaisedButton OpenButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }

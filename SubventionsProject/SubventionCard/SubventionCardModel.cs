@@ -31,7 +31,7 @@ namespace SubventionsProject
             //Бизнес логика
 
             mainForm = MainForm.Initialize();
-            mainForm.UpdateDate();
+            //mainForm.UpdateData();
         }
     }
 }

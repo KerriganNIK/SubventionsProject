@@ -14,7 +14,8 @@ namespace SubventionsProject
 {
     public partial class FilterForm : MaterialForm
     {
-        FilterModel filterModel;
+        private FilterModel filterModel;
+
         public FilterForm()
         {
             InitializeComponent();
@@ -29,7 +30,8 @@ namespace SubventionsProject
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            filterModel = new FilterModel(comboBox2.Text, comboBox3.Text, dateTimePicker1.Text, Convert.ToDouble(comboBox4.Text), comboBox5.Text);
+            filterModel = new FilterModel(comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Text, comboBox5.Text, dateTimePicker1.Text.ToString());
+            filterModel.FilterDate();
             Close();
         }
     }

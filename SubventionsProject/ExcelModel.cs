@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SubventionsProject
 {
@@ -11,9 +8,22 @@ namespace SubventionsProject
         MainForm mainForm;
         public void Export()
         {
-            //Выводит данные в Excel
             mainForm = MainForm.Initialize();
-            mainForm.StatusExcel();
+
+            Excel.Application excel = new Excel.Application();
+
+            excel.Application.Workbooks.Add(Type.Missing);
+            Excel.Worksheet worksheet = (Excel.Worksheet)excel.ActiveSheet;
+
+            for (int i = 0; i < mainForm.dataGridView1.ColumnCount; i++)
+            {
+                for (int j = 0; j < mainForm.dataGridView1.RowCount; j++)
+                {
+                    excel.Cells[j + 1, i + 1] = (mainForm.dataGridView1[i, j].Value).ToString();
+                }
+            }
+
+            excel.Visible = true;
         }
     }
 }

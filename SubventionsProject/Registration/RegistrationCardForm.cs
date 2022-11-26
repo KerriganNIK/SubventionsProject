@@ -15,8 +15,9 @@ namespace SubventionsProject
     public partial class RegistrationCardForm : MaterialForm
     {
         private RegistrationModel registrationModel;
+        private string subventionId;
 
-        public RegistrationCardForm()
+        public RegistrationCardForm(string subventionId)
         {
             InitializeComponent();
 
@@ -24,6 +25,8 @@ namespace SubventionsProject
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
+            this.subventionId = subventionId;
         }
 
         private void CloseButton_Click(object sender, EventArgs e) => Close();
@@ -32,7 +35,8 @@ namespace SubventionsProject
         {
             if (comboBox1.Text != "" && comboBox2.Text != "" && comboBox3.Text != "" && dateTimePicker1.Text != "" && materialSingleLineTextField1.Text != "" && materialSingleLineTextField2.Text != "")
             {
-                registrationModel = new RegistrationModel(comboBox1.Text, comboBox2.Text, comboBox3.Text, materialSingleLineTextField1.Text, Convert.ToDouble(materialSingleLineTextField2.Text), dateTimePicker1.Text);
+                registrationModel = new RegistrationModel(comboBox1.Text, comboBox2.Text, comboBox3.Text, materialSingleLineTextField1.Text, materialSingleLineTextField2.Text, dateTimePicker1.Text, subventionId);
+                registrationModel.RegistrationAdd();
             }
             else
             {
