@@ -42,10 +42,14 @@ namespace SubventionsProject
             {
                 var subventionResponse = JsonConvert.DeserializeObject<List<SubventionResponse>>(subvention.Content.ReadAsStringAsync().Result);
 
-                foreach (var imtems in subventionResponse)
+                foreach (var items in subventionResponse)
                 {
-                    comboSum.Items.Add(imtems.Sum.ToString());
-                    comboDate.Items.Add(imtems.Year.ToString());
+                    comboMunicipal.Items.Add(items.Distributor.Name);
+                    comboGetSubvention.Items.Add(items.Receiver.Name);
+                    comboSetSubvention.Items.Add(items.Distributor.Name);
+                    comboYears.Items.Add(items.Year.Year);
+                    comboSum.Items.Add(items.Sum.ToString());
+                    comboDate.Items.Add(items.Year.ToString().Substring(0, 5));
                 }
             }
         }
