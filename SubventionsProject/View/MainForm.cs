@@ -48,9 +48,7 @@ namespace SubventionsProject
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            //Мб по другому ID получать 
-
-            registration = new RegistrationCardForm(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            registration = new RegistrationCardForm();
             registration.ShowDialog();
         }
 

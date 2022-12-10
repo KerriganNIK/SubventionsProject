@@ -13,7 +13,7 @@ namespace SubventionsProject
     {
         private RegistrationModel registrationModel;
 
-        public RegistrationCardForm(string subventionId)
+        public RegistrationCardForm()
         {
             InitializeComponent();
 
