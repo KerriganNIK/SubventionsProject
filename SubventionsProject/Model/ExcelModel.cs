@@ -21,6 +21,9 @@ namespace SubventionsProject
                 {
                     excel.Cells[j + 1, i + 1] = (mainForm.dataGridView1[i, j].Value).ToString();
                 }
+
+                if (i == 5)
+                    break;
             }
 
             excel.Visible = true;

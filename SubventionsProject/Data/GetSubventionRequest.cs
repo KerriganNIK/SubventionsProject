@@ -9,7 +9,7 @@ namespace SubventionsProject
     public class GetSubventionRequest
     {
         public int ReceiverId { get; set; }
-        public double Amount { get; set; }
+        public int Sum { get; set; }
         public int Year { get; set; }
     }
 }

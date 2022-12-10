@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SubventionsProject
@@ -30,34 +31,42 @@ namespace SubventionsProject
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            //if (comboReceiver.Text != "" && SumTextBox.Text != "" && dateTimePicker1.Text != "")
-            //{
-            //    //registrationModel = new RegistrationModel();
-            //    //registrationModel.AddSubvention();
-            //    //Close();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Заполните все поля!");
-            //}
-
-            MessageBox.Show(comboReceiver.SelectedValue.ToString());
+            if (comboReceiver.Text != "" && SumTextBox.Text != "" && dateTimePicker1.Text != "")
+            {
+                registrationModel = new RegistrationModel(Convert.ToInt32(comboReceiver.SelectedValue.ToString()), Convert.ToInt32(SumTextBox.Text), Convert.ToInt32(dateTimePicker1.Value.Year.ToString()));
+                registrationModel.AddSubvention();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля!");
+            }
         }
 
         private void LoadDataComboBox()
         {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Id");
+            dataTable.Columns.Add("Name");
+
             var organization = DataBase.client.GetAsync(DataBase.Url + "/organizations").Result;
 
             if (organization.IsSuccessStatusCode)
             {
                 var subventionResponse = JsonConvert.DeserializeObject<List<OrganizationResponse>>(organization.Content.ReadAsStringAsync().Result);
-                
+
                 foreach (var items in subventionResponse)
                 {
-                    comboReceiver.Items.Add(items.Name);
-                    comboReceiver.ValueMember = items.Id.ToString();
+                    DataRow dataRow = dataTable.NewRow();
+                    dataRow["Id"] = items.Id.ToString();
+                    dataRow["Name"] = items.Name.ToString();
+                    dataTable.Rows.Add(dataRow);
                 }
             }
+
+            comboReceiver.DataSource = dataTable;
+            comboReceiver.DisplayMember = "Name";
+            comboReceiver.ValueMember = "Id";
         }
     }
 }

@@ -1,14 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SubventionsProject.Data;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SubventionsProject
@@ -31,7 +24,7 @@ namespace SubventionsProject
             GetSubventionRequest getSubventionRequest = new GetSubventionRequest()
             {
                 ReceiverId = reseiverId,
-                Amount = amount,
+                Sum = amount,
                 Year = year,
             };
 
@@ -41,8 +34,8 @@ namespace SubventionsProject
             if (response.IsSuccessStatusCode)
             {
                 var subventionResponse = JsonConvert.DeserializeObject<Response>(response.Content.ReadAsStringAsync().Result);
-                MessageBox.Show(subventionResponse.ToString());
-            } else
+            }
+            else
             {
                 MessageBox.Show(response.Content.ReadAsStringAsync().Result);
             }
