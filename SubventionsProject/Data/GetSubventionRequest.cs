@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SubventionsProject
 {
-    static class DataBase
+    public class GetSubventionRequest
     {
-        //Подключение БД
-        public static DataSet dataSet = new DataSet();
+        public int ReceiverId { get; set; }
+        public double Amount { get; set; }
+        public int Year { get; set; }
     }
 }

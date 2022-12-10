@@ -33,15 +33,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.comboGetSubvention = new System.Windows.Forms.ComboBox();
+            this.comboSetSubvention = new System.Windows.Forms.ComboBox();
+            this.comboYears = new System.Windows.Forms.ComboBox();
+            this.comboSum = new System.Windows.Forms.ComboBox();
             this.OkButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CloseButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboMunicipal = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboDate = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label2
@@ -94,44 +94,37 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Дата получения денежных средств:";
             // 
-            // comboBox2
+            // comboGetSubvention
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(402, 134);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(318, 21);
-            this.comboBox2.TabIndex = 7;
+            this.comboGetSubvention.FormattingEnabled = true;
+            this.comboGetSubvention.Location = new System.Drawing.Point(402, 134);
+            this.comboGetSubvention.Name = "comboGetSubvention";
+            this.comboGetSubvention.Size = new System.Drawing.Size(318, 21);
+            this.comboGetSubvention.TabIndex = 7;
             // 
-            // comboBox3
+            // comboSetSubvention
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(402, 170);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(318, 21);
-            this.comboBox3.TabIndex = 8;
+            this.comboSetSubvention.FormattingEnabled = true;
+            this.comboSetSubvention.Location = new System.Drawing.Point(402, 170);
+            this.comboSetSubvention.Name = "comboSetSubvention";
+            this.comboSetSubvention.Size = new System.Drawing.Size(318, 21);
+            this.comboSetSubvention.TabIndex = 8;
             // 
-            // comboBox4
+            // comboYears
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(402, 208);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(318, 21);
-            this.comboBox4.TabIndex = 9;
+            this.comboYears.FormattingEnabled = true;
+            this.comboYears.Location = new System.Drawing.Point(402, 208);
+            this.comboYears.Name = "comboYears";
+            this.comboYears.Size = new System.Drawing.Size(318, 21);
+            this.comboYears.TabIndex = 9;
             // 
-            // comboBox5
+            // comboSum
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(402, 242);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(318, 21);
-            this.comboBox5.TabIndex = 10;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(402, 280);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(318, 20);
-            this.dateTimePicker1.TabIndex = 11;
+            this.comboSum.FormattingEnabled = true;
+            this.comboSum.Location = new System.Drawing.Point(402, 242);
+            this.comboSum.Name = "comboSum";
+            this.comboSum.Size = new System.Drawing.Size(318, 21);
+            this.comboSum.TabIndex = 10;
             // 
             // OkButton
             // 
@@ -159,13 +152,13 @@
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // comboBox1
+            // comboMunicipal
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(404, 99);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(318, 21);
-            this.comboBox1.TabIndex = 24;
+            this.comboMunicipal.FormattingEnabled = true;
+            this.comboMunicipal.Location = new System.Drawing.Point(404, 99);
+            this.comboMunicipal.Name = "comboMunicipal";
+            this.comboMunicipal.Size = new System.Drawing.Size(318, 21);
+            this.comboMunicipal.TabIndex = 24;
             // 
             // label1
             // 
@@ -177,20 +170,28 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "Муниципальное образование:";
             // 
+            // comboDate
+            // 
+            this.comboDate.FormattingEnabled = true;
+            this.comboDate.Location = new System.Drawing.Point(402, 282);
+            this.comboDate.Name = "comboDate";
+            this.comboDate.Size = new System.Drawing.Size(318, 21);
+            this.comboDate.TabIndex = 25;
+            // 
             // FilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 417);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboDate);
+            this.Controls.Add(this.comboMunicipal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.OkButton);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox5);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboSum);
+            this.Controls.Add(this.comboYears);
+            this.Controls.Add(this.comboSetSubvention);
+            this.Controls.Add(this.comboGetSubvention);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -209,14 +210,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboGetSubvention;
+        private System.Windows.Forms.ComboBox comboSetSubvention;
+        private System.Windows.Forms.ComboBox comboYears;
+        private System.Windows.Forms.ComboBox comboSum;
         private MaterialSkin.Controls.MaterialRaisedButton OkButton;
         private MaterialSkin.Controls.MaterialRaisedButton CloseButton;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboMunicipal;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboDate;
     }
 }

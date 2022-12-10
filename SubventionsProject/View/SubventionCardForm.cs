@@ -1,10 +1,11 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
-using MySql.Data.MySqlClient;
+using SubventionsProject.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,14 @@ using System.Windows.Forms;
 
 namespace SubventionsProject
 {
-    public partial class SubventhionCardForm : MaterialForm
+    public partial class SubventionCardForm : MaterialForm
     {
         private SubventionCardModel subventionCard;
-        private RegistrationCardForm registrationCard; //Мб удалить
-
-        public SubventhionCardForm(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney/*, string dateMoney*/)
+        public SubventionCardForm(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney/*, string dateMoney*/)
         {
             InitializeComponent();
 
-            #region design
+            #region Design
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -34,16 +33,9 @@ namespace SubventionsProject
             UserButton(municipality, getSubvention, distributorSubvention, yearsSubvention, amountMoney/*, string dateMoney*/);
         }
 
-        private void SubventhionCardForm_FormClosed(object sender, FormClosedEventArgs e) => Close();
-        private void ButtonCancel_Click(object sender, EventArgs e) => Close();
-
-
-
-
-
         private void ButtonOk_Click(object sender, EventArgs e)
         {
-            //Изменения данных
+            //Изменение данных
 
             subventionCard = new SubventionCardModel(comboBox1.Text, comboBox2.Text, comboBox3.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Text, this);
             subventionCard.SumbventionEdit();
@@ -51,35 +43,13 @@ namespace SubventionsProject
             Close();
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            registrationCard = new RegistrationCardForm(dataGridSubvention.CurrentRow.Cells[0].Value.ToString());
-            registrationCard.ShowDialog();
-        }
+        private void SubventhionCardForm_FormClosed(object sender, FormClosedEventArgs e) => Close();
 
-
-
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            //Дописать
-        }
-
+        private void ButtonCancel_Click(object sender, EventArgs e) => Close();
 
         public void UpadateDataSubvention()
         {
-            #region BaseDataLogic
-            DataBase.OpenConnection();
-
-            MySqlCommand command = new MySqlCommand("SELECT subvention.* FROM subvention", DataBase.GetConnection());
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            adapter.SelectCommand = command;
-            adapter.Fill(DataBase.dataSet, "СhildSubvention");
-
-            DataBase.CloseConnection();
-            #endregion
-
-            dataGridSubvention.DataSource = DataBase.dataSet.Tables["СhildSubvention"];
+            //Заполнить данные в dataGrid
         }
 
         public void ButtonVisible(Boolean check)
