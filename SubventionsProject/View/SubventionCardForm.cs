@@ -53,7 +53,7 @@ namespace SubventionsProject
             //Заполнить данные в dataGrid
         }
 
-        public void ButtonVisible(Boolean check)
+        public void TurnButtonsVisibility(Boolean check)
         {
             textBox1.ReadOnly = check;
             textBox2.ReadOnly = check;
@@ -73,7 +73,7 @@ namespace SubventionsProject
 
         public void UserButton(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney/*, string dateMoney*/)
         {
-            if (AuthorizationModel.TypeUser == AuthorizationModel.UserCheck)
+            if (AuthenticationModel.TypeUser == AuthenticationModel.UserCheck)
             {
                 AddTransactionButton.Enabled = false;
                 AddTransactionButton.Visible = false;
@@ -85,9 +85,9 @@ namespace SubventionsProject
                 textBox1.Text = yearsSubvention;
                 textBox2.Text = amountMoney;
                 //textBox6.Text = dateMoney;
-                ButtonVisible(true);
+                TurnButtonsVisibility(true);
             }
-            else if (AuthorizationModel.TypeUser == AuthorizationModel.AdminCheck)
+            else if (AuthenticationModel.TypeUser == AuthenticationModel.AdminCheck)
             {
                 comboBox1.Text = municipality;
                 comboBox2.Text = getSubvention;
@@ -95,7 +95,7 @@ namespace SubventionsProject
                 textBox1.Text = yearsSubvention;
                 textBox2.Text = amountMoney;
                 //dateTimePicker1.Text = dateMoney;
-                ButtonVisible(false);
+                TurnButtonsVisibility(false);
             }
         }
 

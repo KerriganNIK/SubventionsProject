@@ -70,7 +70,7 @@
     <Compile Include="View\AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\AuthorizationModel.cs" />
+    <Compile Include="Model\AuthenticationModel.cs" />
     <Compile Include="Data\DataBase.cs" />
     <Compile Include="Model\DeleteDataModel.cs" />
     <Compile Include="Model\ExcelModel.cs" />

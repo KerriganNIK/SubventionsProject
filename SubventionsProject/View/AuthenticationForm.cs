@@ -7,7 +7,7 @@ namespace SubventionsProject
 {
     public partial class AuthenticationForm : MaterialForm
     {
-        private AuthorizationModel authorization;
+        private AuthenticationModel authorization;
 
         public AuthenticationForm()
         {
@@ -22,7 +22,7 @@ namespace SubventionsProject
 
             PasswordText.PasswordChar = '*';
 
-            authorization = new AuthorizationModel(this);
+            authorization = new AuthenticationModel(this);
         }
 
         private void CloseButton_Click(object sender, EventArgs e) => Close();

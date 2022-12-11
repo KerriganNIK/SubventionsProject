@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SubventionsProject
 {
-    public class AuthorizationModel
+    public class AuthenticationModel
     {
         private AuthenticationForm authorization;
         private const Boolean Admin = true;
@@ -20,7 +20,7 @@ namespace SubventionsProject
         public static string TypeUser { get; set; }
         public static string Oranization { get; set; }
 
-        public AuthorizationModel(AuthenticationForm authorization)
+        public AuthenticationModel(AuthenticationForm authorization)
         {
             this.authorization = authorization;
         }
@@ -51,7 +51,7 @@ namespace SubventionsProject
             } 
             else
             {
-                MessageBox.Show("Не верный логин или пароль!");
+                MessageBox.Show("Неверный логин или пароль!");
             }
         }
 
