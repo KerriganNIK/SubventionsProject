@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.EditButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.AddButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.AddTransactionButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,18 +64,20 @@
             this.EditButton.TabIndex = 77;
             this.EditButton.Text = "Изменить";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
-            // AddButton
+            // AddTransactionButton
             // 
-            this.AddButton.Depth = 0;
-            this.AddButton.Location = new System.Drawing.Point(781, 455);
-            this.AddButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Primary = true;
-            this.AddButton.Size = new System.Drawing.Size(124, 44);
-            this.AddButton.TabIndex = 76;
-            this.AddButton.Text = "Добавить";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddTransactionButton.Depth = 0;
+            this.AddTransactionButton.Location = new System.Drawing.Point(781, 455);
+            this.AddTransactionButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AddTransactionButton.Name = "AddTransactionButton";
+            this.AddTransactionButton.Primary = true;
+            this.AddTransactionButton.Size = new System.Drawing.Size(124, 44);
+            this.AddTransactionButton.TabIndex = 76;
+            this.AddTransactionButton.Text = "Добавить транзакцию";
+            this.AddTransactionButton.UseVisualStyleBackColor = true;
+            this.AddTransactionButton.Click += new System.EventHandler(this.AddTransactionButton_Click);
             // 
             // textBox2
             // 
@@ -131,11 +133,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(383, 331);
+            this.label7.Location = new System.Drawing.Point(242, 321);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(277, 31);
+            this.label7.Size = new System.Drawing.Size(325, 31);
             this.label7.TabIndex = 65;
-            this.label7.Text = "Субвенции региона";
+            this.label7.Text = "Транзакции субвенции";
             // 
             // dataGridSubvention
             // 
@@ -143,7 +145,7 @@
             this.dataGridSubvention.AllowUserToDeleteRows = false;
             this.dataGridSubvention.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridSubvention.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridSubvention.Location = new System.Drawing.Point(35, 391);
+            this.dataGridSubvention.Location = new System.Drawing.Point(35, 355);
             this.dataGridSubvention.Name = "dataGridSubvention";
             this.dataGridSubvention.ReadOnly = true;
             this.dataGridSubvention.Size = new System.Drawing.Size(731, 274);
@@ -265,7 +267,7 @@
             this.ClientSize = new System.Drawing.Size(935, 789);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.EditButton);
-            this.Controls.Add(this.AddButton);
+            this.Controls.Add(this.AddTransactionButton);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ButtonCancel);
@@ -296,7 +298,7 @@
         #endregion
 
         private MaterialSkin.Controls.MaterialRaisedButton EditButton;
-        private MaterialSkin.Controls.MaterialRaisedButton AddButton;
+        private MaterialSkin.Controls.MaterialRaisedButton AddTransactionButton;
         public System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;

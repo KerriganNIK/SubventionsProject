@@ -11,7 +11,7 @@ namespace SubventionsProject
 {
     public class AuthorizationModel
     {
-        private AuthorizationForm authorization;
+        private AuthenticationForm authorization;
         private const Boolean Admin = true;
         private const Boolean User = false;
         public const string UserCheck = "0";
@@ -20,7 +20,7 @@ namespace SubventionsProject
         public static string TypeUser { get; set; }
         public static string Oranization { get; set; }
 
-        public AuthorizationModel(AuthorizationForm authorization)
+        public AuthorizationModel(AuthenticationForm authorization)
         {
             this.authorization = authorization;
         }

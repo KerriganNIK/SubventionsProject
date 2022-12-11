@@ -1,6 +1,7 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using SubventionsProject.Model;
+using SubventionsProject.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,8 +75,8 @@ namespace SubventionsProject
         {
             if (AuthorizationModel.TypeUser == AuthorizationModel.UserCheck)
             {
-                AddButton.Enabled = false;
-                AddButton.Visible = false;
+                AddTransactionButton.Enabled = false;
+                AddTransactionButton.Visible = false;
                 EditButton.Visible = false;
                 EditButton.Enabled = false;
                 textBox5.Text = municipality;
@@ -96,6 +97,16 @@ namespace SubventionsProject
                 //dateTimePicker1.Text = dateMoney;
                 ButtonVisible(false);
             }
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddTransactionButton_Click(object sender, EventArgs e)
+        {
+            new TransactionForm().ShowDialog();
         }
     }
 }

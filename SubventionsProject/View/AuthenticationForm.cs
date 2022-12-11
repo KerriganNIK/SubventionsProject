@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace SubventionsProject
 {
-    public partial class AuthorizationForm : MaterialForm
+    public partial class AuthenticationForm : MaterialForm
     {
         private AuthorizationModel authorization;
 
-        public AuthorizationForm()
+        public AuthenticationForm()
         {
             InitializeComponent();
 
