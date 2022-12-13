@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SubventionsProject
 {
@@ -50,7 +47,7 @@ namespace SubventionsProject
             parrametrs.Add(amountMoney);
             parrametrs.Add(dateMoney);
 
-            FilterLogic(parrametrs[0], parrametrs[1], parrametrs[2], parrametrs[3], parrametrs[4]/*, parrametrs[5], parrametrs[6]*/);
+            FilterLogic(parrametrs[0], parrametrs[1], parrametrs[2], parrametrs[3], parrametrs[4], parrametrs[5]);
         }
 
         public void FilterLogic(params string[] fillter)

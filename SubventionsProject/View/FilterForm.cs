@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -34,7 +33,6 @@ namespace SubventionsProject
         {
             filterModel = new FilterModel(comboMunicipal.Text, comboGetSubvention.Text, comboSetSubvention.Text, comboYears.Text, comboSum.Text, comboDate.Text);
             filterModel.FilterDate();
-            Close();
         }
 
         private void LoadDataComboBox()
