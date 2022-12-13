@@ -64,7 +64,11 @@ namespace SubventionsProject
 
         private void DistinctData(ComboBox comboBox)
         {
-            object[] array = comboBox.Items.OfType<string>().Distinct().ToArray();
+            var array = comboBox.Items
+                .OfType<string>()
+                .Distinct()
+                .OrderBy(x => x)
+                .ToArray();
             comboBox.Items.Clear();
             comboBox.Items.AddRange(array);
         }
