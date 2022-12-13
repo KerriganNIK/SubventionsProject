@@ -18,21 +18,7 @@ namespace SubventionsProject
 
         public void Delete()
         {
-            #region DeleteDataBase
-            //DataBase.OpenConnection();
-            //MySqlCommand command = new MySqlCommand("DELETE FROM subvention WHERE subvention.id_subvention = @subventionId", DataBase.GetConnection());
-            //command.Parameters.Add("@subventionId", MySqlDbType.VarChar).Value = subventionId;
-
-            //MySqlDataAdapter adapter = new MySqlDataAdapter();
-            //adapter.SelectCommand = command;
-            //adapter.Fill(DataBase.dataSet, "Subvention");
-
-            //MySqlCommandBuilder builder = new MySqlCommandBuilder(adapter);
-
-            //builder.GetInsertCommand();
-            //adapter.Update(DataBase.dataSet.Tables[0]);
-            //DataBase.CloseConnection();
-            #endregion
+            
 
             mainForm = MainForm.Initialize();
             mainForm.UpdateData();

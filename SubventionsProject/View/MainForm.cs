@@ -60,8 +60,11 @@ namespace SubventionsProject
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            //deleteData = new DeleteDataModel(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-            //deleteData.Delete();
+            if (MessageBox.Show("Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                deleteData = new DeleteDataModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
+                deleteData.Delete();
+            }
         }
 
         public void OpenMainForm(Boolean check)
