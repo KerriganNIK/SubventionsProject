@@ -24,7 +24,7 @@ namespace SubventionsProject
             GetSubventionRequest getSubventionRequest = new GetSubventionRequest()
             {
                 ReceiverId = reseiverId,
-                Sum = amount,
+                Amount = amount,
                 Year = year,
             };
 

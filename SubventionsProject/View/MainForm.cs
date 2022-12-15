@@ -97,7 +97,7 @@ namespace SubventionsProject
                     dataGridView1.Rows[i].Cells[1].Value = subventionResponse[i].Receiver.Name.ToString();
                     dataGridView1.Rows[i].Cells[2].Value = subventionResponse[i].Distributor.Name.ToString();
                     dataGridView1.Rows[i].Cells[3].Value = subventionResponse[i].Year.Year.ToString();   
-                    dataGridView1.Rows[i].Cells[4].Value = subventionResponse[i].Sum.ToString();
+                    dataGridView1.Rows[i].Cells[4].Value = subventionResponse[i].Amount.ToString();
                     dataGridView1.Rows[i].Cells[5].Value = subventionResponse[i].Year.ToString().Substring(0, 5);
                     dataGridView1.Rows[i].Cells[6].Value = subventionResponse[i].Id.ToString();
                 }
