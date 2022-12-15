@@ -49,7 +49,7 @@ namespace SubventionsProject
             dataTable.Columns.Add("Id");
             dataTable.Columns.Add("Name");
 
-            var organization = DataBase.client.GetAsync(DataBase.Url + "/organizations").Result;
+            var organization = DataBase.client.GetAsync(DataBase.Uri + "/organizations").Result;
 
             if (organization.IsSuccessStatusCode)
             {

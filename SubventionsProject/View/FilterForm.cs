@@ -37,7 +37,7 @@ namespace SubventionsProject
 
         private void LoadDataComboBox()
         {
-            var subvention = DataBase.client.GetAsync(DataBase.Url + "/subventions").Result;
+            var subvention = DataBase.client.GetAsync(DataBase.Uri + "/subventions").Result;
 
             if (subvention.IsSuccessStatusCode)
             {

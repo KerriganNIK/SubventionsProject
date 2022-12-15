@@ -12,27 +12,27 @@ namespace SubventionsProject.Model
         private string getSubvention;
         private string distributorSubvention;
         private string yearsSubvention;
-        private string amountMoney;
+        private string moneyAmount;
         private string dateMoney;
         private MainForm mainForm;
         private SubventionCardForm subventhionCard;
 
-        public SubventionCardModel(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney, string dateMoney, SubventionCardForm subventhionCard)
+        public SubventionCardModel(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string moneyAmount, string dateMoney, SubventionCardForm subventionCard)
         {
             this.municipality = municipality;
             this.getSubvention = getSubvention;
             this.distributorSubvention = distributorSubvention;
             this.yearsSubvention = yearsSubvention;
-            this.amountMoney = amountMoney;
+            this.moneyAmount = moneyAmount;
             this.dateMoney = dateMoney;
-            this.subventhionCard = subventhionCard;
+            this.subventhionCard = subventionCard;
         }
 
-        public void SumbventionEdit()
+        public void SubventionEdit()
         {
+            // NOTE: Не тот метод(?)
+
             //Бизнес логика
-
-
 
             mainForm = MainForm.Initialize();
             //mainForm.UpdateDate();

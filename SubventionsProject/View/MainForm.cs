@@ -60,7 +60,7 @@ namespace SubventionsProject
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Удалить выбранную субвенцию?", "Удаление субвенции", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 deleteData = new DeleteDataModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
                 deleteData.Delete();
@@ -84,7 +84,7 @@ namespace SubventionsProject
             if (dataGridView1.Rows.Count != 0)
                 dataGridView1.Rows.Clear();
 
-            var subvention = DataBase.client.GetAsync(DataBase.Url + "/subventions").Result;
+            var subvention = DataBase.client.GetAsync(DataBase.Uri + "/subventions").Result;
 
             if (subvention.IsSuccessStatusCode)
             {

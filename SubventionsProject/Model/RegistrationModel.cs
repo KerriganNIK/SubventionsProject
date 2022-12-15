@@ -29,7 +29,7 @@ namespace SubventionsProject
             };
 
             var json = JsonConvert.SerializeObject(getSubventionRequest);
-            var response = DataBase.client.PostAsync(DataBase.Url + "/subventions", new StringContent(json, Encoding.UTF8, "Application/json")).Result;
+            var response = DataBase.client.PostAsync(DataBase.Uri + "/subventions", new StringContent(json, Encoding.UTF8, "Application/json")).Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -45,4 +45,3 @@ namespace SubventionsProject
         }
     }
 }
-

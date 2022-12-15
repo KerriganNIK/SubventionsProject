@@ -34,19 +34,22 @@ namespace SubventionsProject
             UserButton(municipality, getSubvention, distributorSubvention, yearsSubvention, amountMoney/*, string dateMoney*/);
         }
 
-        private void ButtonOk_Click(object sender, EventArgs e)
+        private void ButtonWrite_Click(object sender, EventArgs e)
         {
             //Изменение данных
 
             subventionCard = new SubventionCardModel(comboBox1.Text, comboBox2.Text, comboBox3.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Text, this);
-            subventionCard.SumbventionEdit();
+            //subventionCard.SubventionEdit();
+
+            new UpdateModel(Convert.ToInt32(comboBox2.Text), Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox1.Text))
+                .UpdateSubvention();
 
             Close();
         }
 
         private void SubventhionCardForm_FormClosed(object sender, FormClosedEventArgs e) => Close();
 
-        private void ButtonCancel_Click(object sender, EventArgs e) => Close();
+        private void ButtonClose_Click(object sender, EventArgs e) => Close();
 
         public void UpadateDataSubvention()
         {
@@ -77,8 +80,6 @@ namespace SubventionsProject
             {
                 AddTransactionButton.Enabled = false;
                 AddTransactionButton.Visible = false;
-                EditButton.Visible = false;
-                EditButton.Enabled = false;
                 textBox5.Text = municipality;
                 textBox4.Text = getSubvention;
                 textBox3.Text = distributorSubvention;
@@ -99,10 +100,10 @@ namespace SubventionsProject
             }
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
-        {
+        //private void EditButton_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void AddTransactionButton_Click(object sender, EventArgs e)
         {

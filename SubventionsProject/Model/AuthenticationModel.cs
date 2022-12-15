@@ -30,7 +30,7 @@ namespace SubventionsProject
             LoginRequest loginRequest = new LoginRequest(login, password);
             string json = JsonConvert.SerializeObject(loginRequest);
 
-            var result = DataBase.client.PostAsync(DataBase.Url + "/auth/login", new StringContent(json, Encoding.UTF8, "application/json")).Result; 
+            var result = DataBase.client.PostAsync(DataBase.Uri + "/auth/login", new StringContent(json, Encoding.UTF8, "application/json")).Result; 
 
             if (result.IsSuccessStatusCode)
             {

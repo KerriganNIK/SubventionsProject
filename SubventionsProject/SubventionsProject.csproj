@@ -55,9 +55,11 @@
     <Compile Include="Data\OrganizationResponse.cs" />
     <Compile Include="Data\Response.cs" />
     <Compile Include="Data\SubventionResponse.cs" />
+    <Compile Include="Data\UpdateSubventionRequest.cs" />
     <Compile Include="Data\UserDto.cs" />
     <Compile Include="Data\GetSubventionRequest.cs" />
     <Compile Include="Model\SubventionCardModel.cs" />
+    <Compile Include="Model\UpdateModel.cs" />
     <Compile Include="View\SubventionCardForm.cs">
       <SubType>Form</SubType>
     </Compile>
