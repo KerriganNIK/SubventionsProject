@@ -28,26 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ConfirmButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.WriteButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CancelButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.AmountTextBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // ConfirmButton
+            // WriteButton
             // 
-            this.ConfirmButton.Depth = 0;
-            this.ConfirmButton.Location = new System.Drawing.Point(12, 399);
-            this.ConfirmButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ConfirmButton.Name = "ConfirmButton";
-            this.ConfirmButton.Primary = true;
-            this.ConfirmButton.Size = new System.Drawing.Size(122, 39);
-            this.ConfirmButton.TabIndex = 3;
-            this.ConfirmButton.Text = "ОК";
-            this.ConfirmButton.UseVisualStyleBackColor = true;
+            this.WriteButton.Depth = 0;
+            this.WriteButton.Location = new System.Drawing.Point(385, 162);
+            this.WriteButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.WriteButton.Name = "WriteButton";
+            this.WriteButton.Primary = true;
+            this.WriteButton.Size = new System.Drawing.Size(122, 39);
+            this.WriteButton.TabIndex = 3;
+            this.WriteButton.Text = "Записать";
+            this.WriteButton.UseVisualStyleBackColor = true;
+            this.WriteButton.Click += new System.EventHandler(this.WriteButton_Click);
             // 
             // CancelButton
             // 
             this.CancelButton.Depth = 0;
-            this.CancelButton.Location = new System.Drawing.Point(140, 399);
+            this.CancelButton.Location = new System.Drawing.Point(513, 162);
             this.CancelButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Primary = true;
@@ -57,22 +62,73 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // AmountTextBox
+            // 
+            this.AmountTextBox.Depth = 0;
+            this.AmountTextBox.Hint = "";
+            this.AmountTextBox.Location = new System.Drawing.Point(317, 84);
+            this.AmountTextBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AmountTextBox.Name = "AmountTextBox";
+            this.AmountTextBox.PasswordChar = '\0';
+            this.AmountTextBox.SelectedText = "";
+            this.AmountTextBox.SelectionLength = 0;
+            this.AmountTextBox.SelectionStart = 0;
+            this.AmountTextBox.Size = new System.Drawing.Size(318, 23);
+            this.AmountTextBox.TabIndex = 33;
+            this.AmountTextBox.UseSystemPasswordChar = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(317, 122);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(318, 20);
+            this.dateTimePicker1.TabIndex = 32;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label6.Location = new System.Drawing.Point(15, 120);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(284, 24);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "Дата совершения транзакции:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label5.Location = new System.Drawing.Point(114, 84);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(185, 24);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "Объём транзакции:";
+            // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(657, 222);
+            this.Controls.Add(this.AmountTextBox);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.ConfirmButton);
+            this.Controls.Add(this.WriteButton);
             this.Name = "TransactionForm";
             this.Text = "Новая транзакция";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        public MaterialSkin.Controls.MaterialRaisedButton ConfirmButton;
+        public MaterialSkin.Controls.MaterialRaisedButton WriteButton;
         public MaterialSkin.Controls.MaterialRaisedButton CancelButton;
+        private MaterialSkin.Controls.MaterialSingleLineTextField AmountTextBox;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

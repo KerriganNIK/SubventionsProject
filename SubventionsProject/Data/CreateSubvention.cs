@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace SubventionsProject
 {
-    public class GetSubventionRequest
+    public class CreateSubventionRequest
     {
         public int ReceiverId { get; set; }
         public int Amount { get; set; }
         public int Year { get; set; }
+    }
+
+    public class CreateSubventionResponse
+    {
+        public int Id { get; set; }
     }
 }

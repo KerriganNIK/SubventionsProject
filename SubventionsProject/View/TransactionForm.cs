@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using SubventionsProject.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace SubventionsProject.View
 {
     public partial class TransactionForm : MaterialForm
     {
+        private TransactionModel transactionModel;
+
         public TransactionForm()
         {
             InitializeComponent();
@@ -29,6 +32,20 @@ namespace SubventionsProject.View
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void WriteButton_Click(object sender, EventArgs e)
+        {
+            if (AmountTextBox.Text != "" && dateTimePicker1.Text != "")
+            {
+                transactionModel = new TransactionModel(Convert.ToInt32(AmountTextBox.Text), dateTimePicker1.Value);
+                transactionModel.AddTransaction();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля!");
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SubventionsProject
         private FilterForm filterForm;
         private SubventionCardForm subventhionCard;
         private ExcelModel excelModel;
-        private DeleteDataModel deleteData;
+        private DeleteModel deleteData;
 
         public MainForm()
         {
@@ -62,7 +62,7 @@ namespace SubventionsProject
         {
             if (MessageBox.Show("Удалить выбранную субвенцию?", "Удаление субвенции", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                deleteData = new DeleteDataModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
+                deleteData = new DeleteModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
                 deleteData.Delete();
             }
         }
@@ -84,22 +84,23 @@ namespace SubventionsProject
             if (dataGridView1.Rows.Count != 0)
                 dataGridView1.Rows.Clear();
 
-            var subvention = DataBase.client.GetAsync(DataBase.Uri + "/subventions").Result;
+            var getSubventionsResponse = DataBase.client.GetAsync(DataBase.Uri + "/subventions").Result;
 
-            if (subvention.IsSuccessStatusCode)
+            if (getSubventionsResponse.IsSuccessStatusCode)
             {
-                var subventionResponse = JsonConvert.DeserializeObject<List<SubventionResponse>>(subvention.Content.ReadAsStringAsync().Result);
-
-                for (int i = 0; i < subventionResponse.Count; i++)
+                var deserializedResponse = JsonConvert.DeserializeObject<List<GetSubventionResponse>>(getSubventionsResponse.Content.ReadAsStringAsync().Result);
+                var numberOfRows = 0;
+                foreach (var subvention in deserializedResponse)
                 {
                     dataGridView1.Rows.Add();
-                    dataGridView1.Rows[i].Cells[0].Value = subventionResponse[i].Distributor.Name.ToString();
-                    dataGridView1.Rows[i].Cells[1].Value = subventionResponse[i].Receiver.Name.ToString();
-                    dataGridView1.Rows[i].Cells[2].Value = subventionResponse[i].Distributor.Name.ToString();
-                    dataGridView1.Rows[i].Cells[3].Value = subventionResponse[i].Year.Year.ToString();   
-                    dataGridView1.Rows[i].Cells[4].Value = subventionResponse[i].Amount.ToString();
-                    dataGridView1.Rows[i].Cells[5].Value = subventionResponse[i].Year.ToString().Substring(0, 5);
-                    dataGridView1.Rows[i].Cells[6].Value = subventionResponse[i].Id.ToString();
+                    dataGridView1.Rows[numberOfRows].Cells[0].Value = subvention.Distributor.Name.ToString();
+                    dataGridView1.Rows[numberOfRows].Cells[1].Value = subvention.Receiver.Name.ToString();
+                    dataGridView1.Rows[numberOfRows].Cells[2].Value = subvention.Distributor.Name.ToString();
+                    dataGridView1.Rows[numberOfRows].Cells[3].Value = subvention.Year.Year.ToString();
+                    dataGridView1.Rows[numberOfRows].Cells[4].Value = subvention.Amount.ToString();
+                    dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToString().Substring(0, 5);
+                    dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
+                    numberOfRows++;
                 }
             }
 
@@ -140,6 +141,11 @@ namespace SubventionsProject
             Column5.DataPropertyName = "Date";
             Column6.HeaderText = "Id субвенции";
             Column6.DataPropertyName = "Id";
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OpenButton_Click(sender, e);
         }
     }
 }

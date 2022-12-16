@@ -21,23 +21,23 @@ namespace SubventionsProject
 
         public void AddSubvention()
         {
-            GetSubventionRequest getSubventionRequest = new GetSubventionRequest()
+            CreateSubventionRequest CreateSubventionRequest = new CreateSubventionRequest()
             {
                 ReceiverId = reseiverId,
                 Amount = amount,
                 Year = year,
             };
 
-            var json = JsonConvert.SerializeObject(getSubventionRequest);
-            var response = DataBase.client.PostAsync(DataBase.Uri + "/subventions", new StringContent(json, Encoding.UTF8, "Application/json")).Result;
+            var json = JsonConvert.SerializeObject(CreateSubventionRequest);
+            var createSubvetionResponse = DataBase.client.PostAsync(DataBase.Uri + "/subventions", new StringContent(json, Encoding.UTF8, "Application/json")).Result;
 
-            if (response.IsSuccessStatusCode)
+            if (createSubvetionResponse.IsSuccessStatusCode)
             {
-                var subventionResponse = JsonConvert.DeserializeObject<Response>(response.Content.ReadAsStringAsync().Result);
+                var deserializedResponse = JsonConvert.DeserializeObject<CreateSubventionResponse>(createSubvetionResponse.Content.ReadAsStringAsync().Result);
             }
             else
             {
-                MessageBox.Show(response.Content.ReadAsStringAsync().Result);
+                MessageBox.Show(createSubvetionResponse.Content.ReadAsStringAsync().Result);
             }
 
             MainForm mainForm = MainForm.Initialize();

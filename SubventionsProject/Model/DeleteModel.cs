@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SubventionsProject
 {
-    public class DeleteDataModel
+    public class DeleteModel
     {
         private MainForm mainForm;
         private string subventionId;
 
-        public DeleteDataModel(string subventionId)
+        public DeleteModel(string subventionId)
         {
             this.subventionId = subventionId;
         }

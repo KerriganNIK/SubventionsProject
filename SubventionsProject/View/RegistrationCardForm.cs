@@ -53,7 +53,7 @@ namespace SubventionsProject
 
             if (organization.IsSuccessStatusCode)
             {
-                var subventionResponse = JsonConvert.DeserializeObject<List<OrganizationResponse>>(organization.Content.ReadAsStringAsync().Result);
+                var subventionResponse = JsonConvert.DeserializeObject<List<GetOrganizationResponse>>(organization.Content.ReadAsStringAsync().Result);
 
                 foreach (var items in subventionResponse)
                 {

@@ -52,13 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\CreateTransaction.cs" />
     <Compile Include="Data\OrganizationResponse.cs" />
-    <Compile Include="Data\Response.cs" />
-    <Compile Include="Data\SubventionResponse.cs" />
+    <Compile Include="Data\GetSubvention.cs" />
     <Compile Include="Data\UpdateSubventionRequest.cs" />
     <Compile Include="Data\UserDto.cs" />
-    <Compile Include="Data\GetSubventionRequest.cs" />
+    <Compile Include="Data\CreateSubvention.cs" />
     <Compile Include="Model\SubventionCardModel.cs" />
+    <Compile Include="Model\TransactionModel.cs" />
     <Compile Include="Model\UpdateModel.cs" />
     <Compile Include="View\SubventionCardForm.cs">
       <SubType>Form</SubType>
@@ -74,7 +75,7 @@
     </Compile>
     <Compile Include="Model\AuthenticationModel.cs" />
     <Compile Include="Data\DataBase.cs" />
-    <Compile Include="Model\DeleteDataModel.cs" />
+    <Compile Include="Model\DeleteModel.cs" />
     <Compile Include="Model\ExcelModel.cs" />
     <Compile Include="View\FilterForm.cs">
       <SubType>Form</SubType>
@@ -83,7 +84,7 @@
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\FilterModel.cs" />
-    <Compile Include="Data\LoginRequest.cs" />
+    <Compile Include="Data\Login.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

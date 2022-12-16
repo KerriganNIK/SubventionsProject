@@ -37,13 +37,13 @@ namespace SubventionsProject
 
         private void LoadDataComboBox()
         {
-            var subvention = DataBase.client.GetAsync(DataBase.Uri + "/subventions").Result;
+            var getSubventionResponse = DataBase.client.GetAsync(DataBase.Uri + "/subventions").Result;
 
-            if (subvention.IsSuccessStatusCode)
+            if (getSubventionResponse.IsSuccessStatusCode)
             {
-                var subventionResponse = JsonConvert.DeserializeObject<List<SubventionResponse>>(subvention.Content.ReadAsStringAsync().Result);
+                var deserializedResponse = JsonConvert.DeserializeObject<List<GetSubventionResponse>>(getSubventionResponse.Content.ReadAsStringAsync().Result);
 
-                foreach (var items in subventionResponse)
+                foreach (var items in deserializedResponse)
                 {
                     comboMunicipal.Items.Add(items.Distributor.Name.ToString());
                     comboGetSubvention.Items.Add(items.Receiver.Name.ToString());
