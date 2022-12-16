@@ -36,19 +36,19 @@
             this.ButtonWrite = new MaterialSkin.Controls.MaterialRaisedButton();
             this.label7 = new System.Windows.Forms.Label();
             this.transactionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.TransactionAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TransactionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.getSubventionText = new System.Windows.Forms.TextBox();
+            this.receiverText = new System.Windows.Forms.TextBox();
             this.distributorText = new System.Windows.Forms.TextBox();
             this.DateText = new System.Windows.Forms.TextBox();
-            this.getSubventionComboBox = new System.Windows.Forms.ComboBox();
+            this.ReceiverComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.municipalityText = new System.Windows.Forms.TextBox();
-            this.TransactionAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TransactionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,14 +69,14 @@
             // 
             this.AmountText.Location = new System.Drawing.Point(390, 228);
             this.AmountText.Name = "AmountText";
-            this.AmountText.Size = new System.Drawing.Size(423, 20);
+            this.AmountText.Size = new System.Drawing.Size(385, 20);
             this.AmountText.TabIndex = 71;
             // 
             // YearText
             // 
             this.YearText.Location = new System.Drawing.Point(390, 194);
             this.YearText.Name = "YearText";
-            this.YearText.Size = new System.Drawing.Size(423, 20);
+            this.YearText.Size = new System.Drawing.Size(385, 20);
             this.YearText.TabIndex = 70;
             // 
             // label6
@@ -142,6 +142,20 @@
             this.transactionsDataGridView.Size = new System.Drawing.Size(778, 274);
             this.transactionsDataGridView.TabIndex = 64;
             // 
+            // TransactionAmount
+            // 
+            this.TransactionAmount.HeaderText = "Объём транзакции";
+            this.TransactionAmount.Name = "TransactionAmount";
+            this.TransactionAmount.ReadOnly = true;
+            this.TransactionAmount.Width = 200;
+            // 
+            // TransactionDate
+            // 
+            this.TransactionDate.HeaderText = "Дата транзакции";
+            this.TransactionDate.Name = "TransactionDate";
+            this.TransactionDate.ReadOnly = true;
+            this.TransactionDate.Width = 300;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -192,62 +206,48 @@
             this.label1.TabIndex = 56;
             this.label1.Text = "Муниципальное образование:";
             // 
-            // getSubventionText
+            // receiverText
             // 
-            this.getSubventionText.Location = new System.Drawing.Point(390, 121);
-            this.getSubventionText.Name = "getSubventionText";
-            this.getSubventionText.Size = new System.Drawing.Size(423, 20);
-            this.getSubventionText.TabIndex = 73;
+            this.receiverText.Location = new System.Drawing.Point(390, 121);
+            this.receiverText.Name = "receiverText";
+            this.receiverText.Size = new System.Drawing.Size(385, 20);
+            this.receiverText.TabIndex = 73;
             // 
             // distributorText
             // 
             this.distributorText.Location = new System.Drawing.Point(390, 157);
             this.distributorText.Name = "distributorText";
-            this.distributorText.Size = new System.Drawing.Size(423, 20);
+            this.distributorText.Size = new System.Drawing.Size(385, 20);
             this.distributorText.TabIndex = 72;
             // 
             // DateText
             // 
             this.DateText.Location = new System.Drawing.Point(390, 264);
             this.DateText.Name = "DateText";
-            this.DateText.Size = new System.Drawing.Size(423, 20);
+            this.DateText.Size = new System.Drawing.Size(385, 20);
             this.DateText.TabIndex = 75;
             // 
-            // getSubventionComboBox
+            // ReceiverComboBox
             // 
-            this.getSubventionComboBox.FormattingEnabled = true;
-            this.getSubventionComboBox.Location = new System.Drawing.Point(390, 120);
-            this.getSubventionComboBox.Name = "getSubventionComboBox";
-            this.getSubventionComboBox.Size = new System.Drawing.Size(423, 21);
-            this.getSubventionComboBox.TabIndex = 62;
+            this.ReceiverComboBox.FormattingEnabled = true;
+            this.ReceiverComboBox.Location = new System.Drawing.Point(390, 120);
+            this.ReceiverComboBox.Name = "ReceiverComboBox";
+            this.ReceiverComboBox.Size = new System.Drawing.Size(385, 21);
+            this.ReceiverComboBox.TabIndex = 62;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(390, 264);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(423, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(385, 20);
             this.dateTimePicker1.TabIndex = 69;
             // 
             // municipalityText
             // 
             this.municipalityText.Location = new System.Drawing.Point(390, 80);
             this.municipalityText.Name = "municipalityText";
-            this.municipalityText.Size = new System.Drawing.Size(423, 20);
+            this.municipalityText.Size = new System.Drawing.Size(385, 20);
             this.municipalityText.TabIndex = 74;
-            // 
-            // TransactionAmount
-            // 
-            this.TransactionAmount.HeaderText = "Объём транзакции";
-            this.TransactionAmount.Name = "TransactionAmount";
-            this.TransactionAmount.ReadOnly = true;
-            this.TransactionAmount.Width = 200;
-            // 
-            // TransactionDate
-            // 
-            this.TransactionDate.HeaderText = "Дата транзакции";
-            this.TransactionDate.Name = "TransactionDate";
-            this.TransactionDate.ReadOnly = true;
-            this.TransactionDate.Width = 300;
             // 
             // SubventionCardForm
             // 
@@ -268,11 +268,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DateText);
-            this.Controls.Add(this.getSubventionComboBox);
+            this.Controls.Add(this.ReceiverComboBox);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.municipalityText);
             this.Controls.Add(this.distributorText);
-            this.Controls.Add(this.getSubventionText);
+            this.Controls.Add(this.receiverText);
             this.Name = "SubventionCardForm";
             this.Text = "Карточка субвенции";
             ((System.ComponentModel.ISupportInitialize)(this.transactionsDataGridView)).EndInit();
@@ -295,10 +295,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox getSubventionText;
+        private System.Windows.Forms.TextBox receiverText;
         private System.Windows.Forms.TextBox distributorText;
         private System.Windows.Forms.TextBox DateText;
-        public System.Windows.Forms.ComboBox getSubventionComboBox;
+        public System.Windows.Forms.ComboBox ReceiverComboBox;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox municipalityText;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionAmount;

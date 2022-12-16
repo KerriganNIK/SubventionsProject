@@ -34,26 +34,28 @@ namespace SubventionsProject
             this.subventionId = subventionId;
 
             RefillTransactionTable();
-            UserButton(getSubvention, dateMoney);
+            ManageUserButtons(getSubvention, dateMoney);
             LoadDataComboBox(getSubvention);
         }
 
         private void ButtonWrite_Click(object sender, EventArgs e)
         {
-            //Изменение данных
-
-            subventionCardModel = new SubventionCardModel(municipalityText.Text, getSubventionComboBox.Text, distributorText.Text, YearText.Text, AmountText.Text, dateTimePicker1.Text, this);
-            //subventionCard.SubventionEdit();
-
-            new UpdateModel(Convert.ToInt32(getSubventionComboBox.Text), Convert.ToInt32(AmountText.Text), Convert.ToInt32(YearText.Text))
-                .UpdateSubvention();
-
-            Close();
+            var receiverId = Convert.ToInt32(ReceiverComboBox.SelectedValue);
+            var updateModel = new UpdateModel(Convert.ToInt32(AmountText.Text), Convert.ToInt32(YearText.Text), receiverId, subventionId);
+            if (updateModel.UpdateSubvention() == true)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
 
         private void SubventhionCardForm_FormClosed(object sender, FormClosedEventArgs e) => Close();
 
-        private void ButtonClose_Click(object sender, EventArgs e) => Close();
+        private void ButtonClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
 
         public void RefillTransactionTable()
         {
@@ -83,9 +85,9 @@ namespace SubventionsProject
             YearText.ReadOnly = check;
             AmountText.ReadOnly = check;
             distributorText.Enabled = false;
-            getSubventionText.Visible = check;
-            getSubventionText.Enabled = check;
-            getSubventionText.ReadOnly = check;
+            receiverText.Visible = check;
+            receiverText.Enabled = check;
+            receiverText.ReadOnly = check;
             municipalityText.Enabled = false;
             DateText.ReadOnly = check;
             DateText.Enabled = check;
@@ -93,20 +95,20 @@ namespace SubventionsProject
             dateTimePicker1.Enabled = false;
         }
 
-        public void UserButton(string getSubvention, string dateMoney)
+        public void ManageUserButtons(string getSubvention, string dateMoney)
         {
             if (AuthenticationModel.TypeUser == AuthenticationModel.UserCheck)
             {
-                getSubventionComboBox.Enabled = false;
+                ReceiverComboBox.Enabled = false;
                 AddTransactionButton.Enabled = false;
                 AddTransactionButton.Visible = false;
-                getSubventionText.Text = getSubvention;
+                receiverText.Text = getSubvention;
                 DateText.Text = dateMoney;
                 TurnButtonsVisibility(true);
             }
             else if (AuthenticationModel.TypeUser == AuthenticationModel.AdminCheck)
             {
-                getSubventionComboBox.Text = getSubvention;
+                ReceiverComboBox.Text = getSubvention;
                 dateTimePicker1.Text = dateMoney;
                 TurnButtonsVisibility(false);
             }
@@ -148,10 +150,10 @@ namespace SubventionsProject
                 }
             }
 
-            getSubventionComboBox.DataSource = dataTable;
-            getSubventionComboBox.DisplayMember = "Name";
-            getSubventionComboBox.ValueMember = "Id";
-            getSubventionComboBox.SelectedIndex = numberValue;
+            ReceiverComboBox.DataSource = dataTable;
+            ReceiverComboBox.DisplayMember = "Name";
+            ReceiverComboBox.ValueMember = "Id";
+            ReceiverComboBox.SelectedIndex = numberValue;
         }
     }
 }

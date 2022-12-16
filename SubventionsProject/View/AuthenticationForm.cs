@@ -20,7 +20,7 @@ namespace SubventionsProject
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             #endregion
 
-            PasswordText.PasswordChar = '*';
+            TurnPasswordVisibility();
 
             authorization = new AuthenticationModel(this);
         }
@@ -37,6 +37,17 @@ namespace SubventionsProject
             {
                 MessageBox.Show("Не все поля заполнены!");
             }
+        }
+
+        private void ShowPasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TurnPasswordVisibility();
+        }
+
+        private void TurnPasswordVisibility()
+        {
+            bool isChecked = ShowPasswordCheckBox.Checked;
+            PasswordText.UseSystemPasswordChar = !isChecked;
         }
     }
 }

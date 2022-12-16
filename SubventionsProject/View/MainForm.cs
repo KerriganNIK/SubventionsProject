@@ -43,7 +43,7 @@ namespace SubventionsProject
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
 
-        private void FillterButton_Click(object sender, EventArgs e)
+        private void FilterButton_Click(object sender, EventArgs e)
         {
             filterForm = new FilterForm();
             filterForm.ShowDialog();
@@ -52,13 +52,13 @@ namespace SubventionsProject
         private void AddButton_Click(object sender, EventArgs e)
         {
             registration = new RegistrationCardForm();
-            registration.ShowDialog();
+            if (registration.ShowDialog() == DialogResult.OK) UpdateData();
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
             subventhionCard = new SubventionCardForm(dataGridView1.CurrentRow.Cells[0].Value.ToString(), dataGridView1.CurrentRow.Cells[1].Value.ToString(), dataGridView1.CurrentRow.Cells[2].Value.ToString(), dataGridView1.CurrentRow.Cells[3].Value.ToString(), dataGridView1.CurrentRow.Cells[4].Value.ToString(), dataGridView1.CurrentRow.Cells[5].Value.ToString(), Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value.ToString()));
-            subventhionCard.ShowDialog();
+            if (subventhionCard.ShowDialog() == DialogResult.OK) UpdateData();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace SubventionsProject
 
         public void OpenMainForm(Boolean check)
         {
-            //UpdateData();
+            UpdateData();
 
             AddButton.Visible = check;
             AddButton.Enabled = check;
@@ -108,7 +108,7 @@ namespace SubventionsProject
                         dataGridView1.Rows[numberOfRows].Cells[2].Value = subvention.Distributor.Name.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[3].Value = subvention.Year.Year.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[4].Value = subvention.Amount.ToString();
-                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToString().Substring(0, 5);
+                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year;
                         dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
                         numberOfRows++;
                     }
@@ -129,6 +129,7 @@ namespace SubventionsProject
                 excelModel = new ExcelModel();
                 excelModel.Export();
             }
+            else MessageBox.Show("Нечего экспоритровать", "Ошибка экспорта");
         }
 
         private void CreateDataGrid()
@@ -143,16 +144,21 @@ namespace SubventionsProject
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column0, Column1, Column2, Column3, Column4, Column5, Column6 });
             Column0.HeaderText = "Муниципальное образование";
             Column0.DataPropertyName = "Municipality";
+            Column0.Width = 145;
             Column1.HeaderText = "Получатель субвенции";
             Column1.DataPropertyName = "GetSubvention";
+            Column1.Width = 145;
             Column2.HeaderText = "Распределитель субвенции";
             Column2.DataPropertyName = "SetSubvention";
+            Column2.Width = 145;
             Column3.HeaderText = "Год выдачи субвенции";
             Column3.DataPropertyName = "Years";
+            Column3.Width = 70;
             Column4.HeaderText = "Объём субвенции";
-            Column4.DataPropertyName = "Sum";
+            Column4.DataPropertyName = "Amount";
             Column5.HeaderText = "Дата получения";
             Column5.DataPropertyName = "Date";
+            Column5.Width = 135;
             Column6.HeaderText = "Id субвенции";
             Column6.DataPropertyName = "Id";
         }

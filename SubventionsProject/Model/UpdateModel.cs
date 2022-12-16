@@ -6,37 +6,43 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SubventionsProject.Model
 {
     internal class UpdateModel
     {
-        private int reseiverId;
-        private int year;
         private int amount;
+        private int year;
+        private int receiverId;
+        private int subvetionId;
 
-        public UpdateModel(int reseiverId, int amount, int year)
+        public UpdateModel(int amount, int year, int receiverId, int subventionId)
         {
-            this.reseiverId = reseiverId;
             this.amount = amount;
             this.year = year;
+            this.receiverId = receiverId;
+            this.subvetionId = subventionId;
         }
 
-        public void UpdateSubvention()
+        /// <summary>
+        /// Returns true if updated succesfully; otherwise false.
+        /// </summary>
+        public bool UpdateSubvention()
         {
-            UpdateSubventionRequest updateSubventionRequest = new UpdateSubventionRequest()
-            {
-                ReceiverId = reseiverId,
-                Year = year,
-                Amount = amount
-            };
+            var updateSubventionRequest = new UpdateSubventionRequest(amount, year, receiverId);
             var serializedRequest = JsonConvert.SerializeObject(updateSubventionRequest);
-            // TODO: передать в запросе ID
-            var request = new HttpRequestMessage(new HttpMethod("PATCH"), DataBase.Uri + "/subventions/:id")
+            var requestContent = new StringContent(serializedRequest, Encoding.UTF8, "Application/json");
+            var updateTransactionResponse = DataBase.Client.PutAsync(DataBase.Uri + $"/subventions/{subvetionId}", requestContent).Result;
+            if (updateTransactionResponse.IsSuccessStatusCode)
             {
-                Content = new StringContent(serializedRequest, Encoding.UTF8, "Application/json")
-            };
-            var response = DataBase.Client.SendAsync(request);
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(HttpErrorHelper.GetErrorMessage(updateTransactionResponse));
+                return false;
+            }
         }
     }
 }

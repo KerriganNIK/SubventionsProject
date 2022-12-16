@@ -15,7 +15,7 @@ namespace SubventionsProject.Model
         private string moneyAmount;
         private string dateMoney;
         private MainForm mainForm;
-        private SubventionCardForm subventhionCard;
+        private SubventionCardForm subventionCard;
 
         public SubventionCardModel(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string moneyAmount, string dateMoney, SubventionCardForm subventionCard)
         {
@@ -25,17 +25,7 @@ namespace SubventionsProject.Model
             this.yearsSubvention = yearsSubvention;
             this.moneyAmount = moneyAmount;
             this.dateMoney = dateMoney;
-            this.subventhionCard = subventionCard;
-        }
-
-        public void SubventionEdit()
-        {
-            // NOTE: Не тот метод(?)
-
-            //Бизнес логика
-
-            mainForm = MainForm.Initialize();
-            //mainForm.UpdateDate();
+            this.subventionCard = subventionCard;
         }
     }
 }

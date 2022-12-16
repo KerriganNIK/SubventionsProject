@@ -27,15 +27,22 @@ namespace SubventionsProject
             LoadDataComboBox();
         }
 
-        private void CloseButton_Click(object sender, EventArgs e) => Close();
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (comboReceiver.Text != "" && SumTextBox.Text != "" && dateTimePicker1.Text != "")
+            if (comboReceiver.Text != "" && AmountTextBox.Text != "" && YearTextbox.Text != "")
             {
-                registrationModel = new RegistrationModel(Convert.ToInt32(comboReceiver.SelectedValue.ToString()), Convert.ToInt32(SumTextBox.Text), Convert.ToInt32(dateTimePicker1.Value.Year.ToString()));
-                registrationModel.AddSubvention();
-                Close();
+                registrationModel = new RegistrationModel(Convert.ToInt32(comboReceiver.SelectedValue.ToString()), Convert.ToInt32(AmountTextBox.Text), Convert.ToInt32(YearTextbox.Text.ToString()));
+                if (registrationModel.AddSubvention())
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
             else
             {
@@ -55,11 +62,11 @@ namespace SubventionsProject
             {
                 var deserializedResponse = JsonConvert.DeserializeObject<List<GetOrganizationResponse>>(GetOrganizationResponse.Content.ReadAsStringAsync().Result);
 
-                foreach (var items in deserializedResponse)
+                foreach (var organization in deserializedResponse)
                 {
                     DataRow dataRow = dataTable.NewRow();
-                    dataRow["Id"] = items.Id.ToString();
-                    dataRow["Name"] = items.Name.ToString();
+                    dataRow["Id"] = organization.Id.ToString();
+                    dataRow["Name"] = organization.Name.ToString();
                     dataTable.Rows.Add(dataRow);
                 }
             }

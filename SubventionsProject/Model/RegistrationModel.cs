@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SubventionsProject.Data;
+using SubventionsProject.Model;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Forms;
@@ -8,35 +9,33 @@ namespace SubventionsProject
 {
     public class RegistrationModel
     {
-        private int reseiverId;
+        private int receiverId;
         private int amount;
         private int year;
 
-        public RegistrationModel(int reseiverId, int amount, int year)
+        public RegistrationModel(int receiverId, int amount, int year)
         {
-            this.reseiverId = reseiverId;
+            this.receiverId = receiverId;
             this.amount = amount;
             this.year = year;
         }
 
-        public void AddSubvention()
+        /// <summary>
+        /// Returns true if added succesfully; otherwise false.
+        /// </summary>
+        public bool AddSubvention()
         {
-            CreateSubventionRequest CreateSubventionRequest = new CreateSubventionRequest(reseiverId, amount, year);
+            CreateSubventionRequest CreateSubventionRequest = new CreateSubventionRequest(receiverId, amount, year);
 
             var json = JsonConvert.SerializeObject(CreateSubventionRequest);
             var createSubvetionResponse = DataBase.Client.PostAsync(DataBase.Uri + "/subventions", new StringContent(json, Encoding.UTF8, "Application/json")).Result;
 
-            if (createSubvetionResponse.IsSuccessStatusCode)
-            {
-                var deserializedResponse = JsonConvert.DeserializeObject<CreateSubventionResponse>(createSubvetionResponse.Content.ReadAsStringAsync().Result);
-            }
+            if (createSubvetionResponse.IsSuccessStatusCode) return true;
             else
             {
-                MessageBox.Show(createSubvetionResponse.Content.ReadAsStringAsync().Result);
+                MessageBox.Show(HttpErrorHelper.GetErrorMessage(createSubvetionResponse));
+                return false;
             }
-
-            MainForm mainForm = MainForm.Initialize();
-            mainForm.UpdateData();
         }
     }
 }

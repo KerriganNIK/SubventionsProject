@@ -34,13 +34,14 @@
             this.PasswordText = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.OkButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CloseButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.ShowPasswordCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // LoginLabel
             // 
             this.LoginLabel.AutoSize = true;
             this.LoginLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.75F);
-            this.LoginLabel.Location = new System.Drawing.Point(88, 116);
+            this.LoginLabel.Location = new System.Drawing.Point(41, 98);
             this.LoginLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LoginLabel.Name = "LoginLabel";
             this.LoginLabel.Size = new System.Drawing.Size(74, 25);
@@ -51,7 +52,7 @@
             // 
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.75F);
-            this.PasswordLabel.Location = new System.Drawing.Point(79, 153);
+            this.PasswordLabel.Location = new System.Drawing.Point(32, 135);
             this.PasswordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(86, 25);
@@ -63,7 +64,7 @@
             this.LoginText.Depth = 0;
             this.LoginText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.LoginText.Hint = "";
-            this.LoginText.Location = new System.Drawing.Point(177, 118);
+            this.LoginText.Location = new System.Drawing.Point(130, 100);
             this.LoginText.Margin = new System.Windows.Forms.Padding(2);
             this.LoginText.MouseState = MaterialSkin.MouseState.HOVER;
             this.LoginText.Name = "LoginText";
@@ -80,7 +81,7 @@
             this.PasswordText.Depth = 0;
             this.PasswordText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.PasswordText.Hint = "";
-            this.PasswordText.Location = new System.Drawing.Point(177, 154);
+            this.PasswordText.Location = new System.Drawing.Point(130, 136);
             this.PasswordText.Margin = new System.Windows.Forms.Padding(2);
             this.PasswordText.MouseState = MaterialSkin.MouseState.HOVER;
             this.PasswordText.Name = "PasswordText";
@@ -95,7 +96,7 @@
             // OkButton
             // 
             this.OkButton.Depth = 0;
-            this.OkButton.Location = new System.Drawing.Point(119, 227);
+            this.OkButton.Location = new System.Drawing.Point(46, 220);
             this.OkButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.OkButton.Name = "OkButton";
             this.OkButton.Primary = true;
@@ -108,7 +109,7 @@
             // CloseButton
             // 
             this.CloseButton.Depth = 0;
-            this.CloseButton.Location = new System.Drawing.Point(239, 227);
+            this.CloseButton.Location = new System.Drawing.Point(218, 220);
             this.CloseButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Primary = true;
@@ -118,11 +119,29 @@
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // materialCheckBox1
+            // 
+            this.ShowPasswordCheckBox.AutoSize = true;
+            this.ShowPasswordCheckBox.Depth = 0;
+            this.ShowPasswordCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.ShowPasswordCheckBox.Location = new System.Drawing.Point(170, 172);
+            this.ShowPasswordCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.ShowPasswordCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.ShowPasswordCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ShowPasswordCheckBox.Name = "materialCheckBox1";
+            this.ShowPasswordCheckBox.Ripple = true;
+            this.ShowPasswordCheckBox.Size = new System.Drawing.Size(141, 30);
+            this.ShowPasswordCheckBox.TabIndex = 6;
+            this.ShowPasswordCheckBox.Text = "Показать пароль";
+            this.ShowPasswordCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPasswordCheckBox.CheckedChanged += new System.EventHandler(this.ShowPasswordCheckBox_CheckedChanged);
+            // 
             // AuthenticationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 298);
+            this.ClientSize = new System.Drawing.Size(349, 283);
+            this.Controls.Add(this.ShowPasswordCheckBox);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.PasswordText);
@@ -131,7 +150,7 @@
             this.Controls.Add(this.LoginLabel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AuthenticationForm";
-            this.Text = "Аутентификация";
+            this.Text = "Вход в систему";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,6 +164,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField PasswordText;
         private MaterialSkin.Controls.MaterialRaisedButton OkButton;
         private MaterialSkin.Controls.MaterialRaisedButton CloseButton;
+        private MaterialSkin.Controls.MaterialCheckBox ShowPasswordCheckBox;
     }
 }
 

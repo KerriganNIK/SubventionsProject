@@ -33,6 +33,7 @@ namespace SubventionsProject
         {
             filterModel = new FilterModel(comboGetSubvention.Text, comboYears.Text, comboSum.Text, comboDate.Text);
             filterModel.FilterDate();
+            Close();
         }
 
         private void LoadDataComboBox()
