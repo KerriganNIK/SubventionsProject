@@ -63,16 +63,20 @@ namespace SubventionsProject
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Удалить выбранную субвенцию?", "Удаление субвенции", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                deleteData = new DeleteModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
-                deleteData.Delete();
-            }
+            if (dataGridView1.CurrentRow != null)
+                if (MessageBox.Show("Удалить выбранную субвенцию?", "Удаление субвенции", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    deleteData = new DeleteModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
+                    if (deleteData.Delete())
+                        dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                }
+                else{}
+            else MessageBox.Show("В таблице нет записей!", "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void OpenMainForm(Boolean check)
         {
-            UpdateData();
+            //UpdateData();
 
             AddButton.Visible = check;
             AddButton.Enabled = check;

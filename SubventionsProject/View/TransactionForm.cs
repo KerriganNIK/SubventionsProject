@@ -22,7 +22,7 @@ namespace SubventionsProject.View
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             #endregion
 
-            subventionId = subnvetionId;
+            this.subventionId = subnvetionId;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

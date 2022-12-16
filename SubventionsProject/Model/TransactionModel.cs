@@ -23,6 +23,9 @@ namespace SubventionsProject.Model
             SubventionId = subventionId;
         }
 
+        /// <summary>
+        /// Returns true if added succesfully; otherwise false.
+        /// </summary>
         public bool AddTransaction()
         {
             var createTransactionRequest = new CreateTransactionRequest(Amount, Date);

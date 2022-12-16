@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SubventionsProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SubventionsProject
 {
@@ -16,12 +18,21 @@ namespace SubventionsProject
             this.subventionId = subventionId;
         }
 
-        public void Delete()
+        /// <summary>
+        /// Returns true if deleted succesfully; otherwise false.
+        /// </summary>
+        public bool Delete()
         {
-            
-
-            mainForm = MainForm.Initialize();
-            mainForm.UpdateData();
+            var deleteSubventionResponse = DataBase.Client.DeleteAsync(DataBase.Uri + $"/subventions/{subventionId}").Result;
+            if (deleteSubventionResponse.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(HttpErrorHelper.GetErrorMessage(deleteSubventionResponse));
+                return false;
+            }
         }
     }
 }
