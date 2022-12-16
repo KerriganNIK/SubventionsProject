@@ -40,7 +40,6 @@ namespace SubventionsProject
 
                 if (resp.User.RoleName == AdminCheck)
                 {
-                    TypeUser = AdminCheck;
                     OpenMain(Admin, AdminCheck, resp.User.OrganizationId);
                 }
                 else
