@@ -11,7 +11,7 @@ namespace SubventionsProject
     public partial class MainForm : MaterialForm
     {
         private static MainForm mainForm = null;
-        private RegistrationCardForm registration;
+        private RegistrationCardForm registrationCardForm;
         private FilterForm filterForm;
         private SubventionCardForm subventhionCard;
         private ExcelModel excelModel;
@@ -51,8 +51,8 @@ namespace SubventionsProject
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            registration = new RegistrationCardForm();
-            if (registration.ShowDialog() == DialogResult.OK) UpdateData();
+            registrationCardForm = new RegistrationCardForm();
+            if (registrationCardForm.ShowDialog() == DialogResult.OK) UpdateData();
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
@@ -63,14 +63,15 @@ namespace SubventionsProject
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow != null)
+            if (RegistryIsNotEmpty())
+            {
                 if (MessageBox.Show("Удалить выбранную субвенцию?", "Удаление субвенции", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     deleteData = new DeleteModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
                     if (deleteData.Delete())
                         dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
                 }
-                else{}
+            }
             else MessageBox.Show("В таблице нет записей!", "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -88,7 +89,7 @@ namespace SubventionsProject
 
         public void UpdateData()
         {
-            if (dataGridView1.Rows.Count != 0)
+            if (RegistryIsNotEmpty())
                 dataGridView1.Rows.Clear();
 
             var getSubventionsResponse = DataBase.Client.GetAsync(DataBase.Uri + "/subventions").Result;
@@ -100,7 +101,7 @@ namespace SubventionsProject
 
                 foreach (var subvention in deserializedResponse)
                 {
-                    if (subvention.Distributor.Id == AuthenticationModel.Organization)
+                    if (subvention.Distributor.Id == AuthenticationModel.OrganizationId)
                     {
                         dataGridView1.Rows.Add();
                         dataGridView1.Rows[numberOfRows].Cells[0].Value = subvention.Distributor.Name.ToString();
@@ -124,12 +125,12 @@ namespace SubventionsProject
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count > 0)
+            if (RegistryIsNotEmpty())
             {
                 excelModel = new ExcelModel();
                 excelModel.Export();
             }
-            else MessageBox.Show("Нечего экспоритровать", "Ошибка экспорта");
+            else MessageBox.Show("Нечего экспоритровать", "Ошибка экспорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void CreateDataGrid()
@@ -166,6 +167,21 @@ namespace SubventionsProject
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             OpenButton_Click(sender, e);
+        }
+
+        private void DistributeButton_Click(object sender, EventArgs e)
+        {
+            if (RegistryIsNotEmpty())
+            {
+                registrationCardForm = new RegistrationCardForm(dataGridView1.CurrentRow.Cells[6].Value.ToString());
+                if (registrationCardForm.ShowDialog() == DialogResult.OK) UpdateData();
+            }
+            else MessageBox.Show("Нечего распределять", "Ошибка распределения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private bool RegistryIsNotEmpty()
+        {
+            return dataGridView1.Rows.Count > 0;
         }
     }
 }

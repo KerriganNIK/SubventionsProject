@@ -12,8 +12,9 @@ namespace SubventionsProject
     public partial class RegistrationCardForm : MaterialForm
     {
         private RegistrationModel registrationModel;
+        private string parentSubventionId;
 
-        public RegistrationCardForm()
+        public RegistrationCardForm(string parentSubventionId = null)
         {
             InitializeComponent();
 
@@ -25,6 +26,10 @@ namespace SubventionsProject
             #endregion
 
             LoadDataComboBox();
+
+            this.parentSubventionId = parentSubventionId;
+            if (parentSubventionId == null) Text = "Создание субвенции верхнего уровня";
+            else Text = "Распределение субвенции";
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -38,10 +43,21 @@ namespace SubventionsProject
             if (comboReceiver.Text != "" && AmountTextBox.Text != "" && YearTextbox.Text != "")
             {
                 registrationModel = new RegistrationModel(Convert.ToInt32(comboReceiver.SelectedValue.ToString()), Convert.ToInt32(AmountTextBox.Text), Convert.ToInt32(YearTextbox.Text.ToString()));
-                if (registrationModel.AddSubvention())
+                if (parentSubventionId == null)
                 {
-                    DialogResult = DialogResult.OK;
-                    Close();
+                    if (registrationModel.AddSubvention())
+                    {
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                }
+                else
+                {
+                    if (registrationModel.DistributeSubvention(parentSubventionId))
+                    {
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
                 }
             }
             else

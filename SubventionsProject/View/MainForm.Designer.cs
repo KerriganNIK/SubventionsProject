@@ -36,6 +36,7 @@
             this.ExportButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.ExitButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DistributeButton = new MaterialSkin.Controls.MaterialRaisedButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Depth = 0;
-            this.DeleteButton.Location = new System.Drawing.Point(821, 162);
+            this.DeleteButton.Location = new System.Drawing.Point(821, 240);
             this.DeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Primary = true;
@@ -78,7 +79,7 @@
             // OpenButton
             // 
             this.OpenButton.Depth = 0;
-            this.OpenButton.Location = new System.Drawing.Point(821, 220);
+            this.OpenButton.Location = new System.Drawing.Point(821, 195);
             this.OpenButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.OpenButton.Name = "OpenButton";
             this.OpenButton.Primary = true;
@@ -91,7 +92,7 @@
             // FilterButton
             // 
             this.FilterButton.Depth = 0;
-            this.FilterButton.Location = new System.Drawing.Point(821, 351);
+            this.FilterButton.Location = new System.Drawing.Point(821, 370);
             this.FilterButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.FilterButton.Name = "FilterButton";
             this.FilterButton.Primary = true;
@@ -104,7 +105,7 @@
             // ExportButton
             // 
             this.ExportButton.Depth = 0;
-            this.ExportButton.Location = new System.Drawing.Point(821, 407);
+            this.ExportButton.Location = new System.Drawing.Point(821, 418);
             this.ExportButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.ExportButton.Name = "ExportButton";
             this.ExportButton.Primary = true;
@@ -142,11 +143,25 @@
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
+            // DistributeButton
+            // 
+            this.DistributeButton.Depth = 0;
+            this.DistributeButton.Location = new System.Drawing.Point(821, 150);
+            this.DistributeButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DistributeButton.Name = "DistributeButton";
+            this.DistributeButton.Primary = true;
+            this.DistributeButton.Size = new System.Drawing.Size(122, 39);
+            this.DistributeButton.TabIndex = 9;
+            this.DistributeButton.Text = "Распределить";
+            this.DistributeButton.UseVisualStyleBackColor = true;
+            this.DistributeButton.Click += new System.EventHandler(this.DistributeButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 564);
+            this.Controls.Add(this.DistributeButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.ExportButton);
@@ -173,5 +188,6 @@
         public MaterialSkin.Controls.MaterialRaisedButton DeleteButton;
         public MaterialSkin.Controls.MaterialRaisedButton OpenButton;
         public System.Windows.Forms.DataGridView dataGridView1;
+        public MaterialSkin.Controls.MaterialRaisedButton DistributeButton;
     }
 }

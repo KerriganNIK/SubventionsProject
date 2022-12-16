@@ -20,7 +20,7 @@ namespace SubventionsProject
         public const string AdminCheck = "Distributor";
         private MainForm mainForm;
         public static string TypeUser { get; set; }
-        public static int Organization { get; set; }
+        public static int OrganizationId { get; set; }
 
         public AuthenticationModel(AuthenticationForm authorization)
         {
@@ -58,7 +58,7 @@ namespace SubventionsProject
         public void OpenMain(Boolean check, string type, int organizationId)
         {
             TypeUser = type;
-            Organization = organizationId;
+            OrganizationId = organizationId;
 
             mainForm = MainForm.Initialize();
             authorization.Hide();
