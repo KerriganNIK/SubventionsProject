@@ -49,7 +49,7 @@ namespace SubventionsProject
                     comboGetSubvention.Items.Add(items.Receiver.Name.ToString());
                     comboSetSubvention.Items.Add(items.Distributor.Name.ToString());
                     comboYears.Items.Add(items.Year.Year.ToString());
-                    comboSum.Items.Add(items.Sum.ToString());
+                    comboSum.Items.Add(items.Amount.ToString());
                     comboDate.Items.Add(items.Year.ToString().Substring(0, 5));
                 }
 
