@@ -49,13 +49,13 @@ namespace SubventionsProject
             dataTable.Columns.Add("Id");
             dataTable.Columns.Add("Name");
 
-            var organization = DataBase.client.GetAsync(DataBase.Uri + "/organizations").Result;
+            var GetOrganizationResponse = DataBase.Client.GetAsync(DataBase.Uri + "/organizations").Result;
 
-            if (organization.IsSuccessStatusCode)
+            if (GetOrganizationResponse.IsSuccessStatusCode)
             {
-                var subventionResponse = JsonConvert.DeserializeObject<List<GetOrganizationResponse>>(organization.Content.ReadAsStringAsync().Result);
+                var deserializedResponse = JsonConvert.DeserializeObject<List<GetOrganizationResponse>>(GetOrganizationResponse.Content.ReadAsStringAsync().Result);
 
-                foreach (var items in subventionResponse)
+                foreach (var items in deserializedResponse)
                 {
                     DataRow dataRow = dataTable.NewRow();
                     dataRow["Id"] = items.Id.ToString();

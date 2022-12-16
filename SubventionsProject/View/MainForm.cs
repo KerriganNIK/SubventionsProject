@@ -84,7 +84,7 @@ namespace SubventionsProject
             if (dataGridView1.Rows.Count != 0)
                 dataGridView1.Rows.Clear();
 
-            var getSubventionsResponse = DataBase.client.GetAsync(DataBase.Uri + "/subventions").Result;
+            var getSubventionsResponse = DataBase.Client.GetAsync(DataBase.Uri + "/subventions").Result;
 
             if (getSubventionsResponse.IsSuccessStatusCode)
             {

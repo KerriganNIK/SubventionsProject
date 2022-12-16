@@ -8,8 +8,14 @@ namespace SubventionsProject.Data
 {
     public class CreateTransactionRequest
     {
-        public int Amount { get; set; }
-        public DateTime Date { get; set; }
+        public int Amount { get; }
+        public DateTime Date { get; }
+
+        public CreateTransactionRequest(int amount, DateTime date)
+        {
+            Amount = amount;
+            Date = date;
+        }
     }
 
     public class TransactionResponse

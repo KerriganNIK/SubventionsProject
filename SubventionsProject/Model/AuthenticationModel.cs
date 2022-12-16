@@ -30,13 +30,13 @@ namespace SubventionsProject
             LoginRequest loginRequest = new LoginRequest(login, password);
             string json = JsonConvert.SerializeObject(loginRequest);
 
-            var result = DataBase.client.PostAsync(DataBase.Uri + "/auth/login", new StringContent(json, Encoding.UTF8, "application/json")).Result; 
+            var result = DataBase.Client.PostAsync(DataBase.Uri + "/auth/login", new StringContent(json, Encoding.UTF8, "application/json")).Result; 
 
             if (result.IsSuccessStatusCode)
             {
                 LoginResponse resp = JsonConvert.DeserializeObject<LoginResponse>(result.Content.ReadAsStringAsync().Result);
 
-                DataBase.client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", resp.Token);
+                DataBase.Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", resp.Token);
 
                 if (resp.User.RoleName == AdminCheck)
                 {

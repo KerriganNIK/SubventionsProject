@@ -21,15 +21,10 @@ namespace SubventionsProject
 
         public void AddSubvention()
         {
-            CreateSubventionRequest CreateSubventionRequest = new CreateSubventionRequest()
-            {
-                ReceiverId = reseiverId,
-                Amount = amount,
-                Year = year,
-            };
+            CreateSubventionRequest CreateSubventionRequest = new CreateSubventionRequest(reseiverId, amount, year);
 
             var json = JsonConvert.SerializeObject(CreateSubventionRequest);
-            var createSubvetionResponse = DataBase.client.PostAsync(DataBase.Uri + "/subventions", new StringContent(json, Encoding.UTF8, "Application/json")).Result;
+            var createSubvetionResponse = DataBase.Client.PostAsync(DataBase.Uri + "/subventions", new StringContent(json, Encoding.UTF8, "Application/json")).Result;
 
             if (createSubvetionResponse.IsSuccessStatusCode)
             {

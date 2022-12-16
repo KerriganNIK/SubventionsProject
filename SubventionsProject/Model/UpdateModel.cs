@@ -35,7 +35,7 @@ namespace SubventionsProject.Model
             {
                 Content = new StringContent(serializedRequest, Encoding.UTF8, "Application/json")
             };
-            var response = DataBase.client.SendAsync(request);
+            var response = DataBase.Client.SendAsync(request);
         }
     }
 }

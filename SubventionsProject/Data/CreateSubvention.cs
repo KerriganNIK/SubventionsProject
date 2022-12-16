@@ -8,9 +8,16 @@ namespace SubventionsProject
 {
     public class CreateSubventionRequest
     {
-        public int ReceiverId { get; set; }
-        public int Amount { get; set; }
-        public int Year { get; set; }
+        public int ReceiverId { get; }
+        public int Amount { get; }
+        public int Year { get; }
+
+        public CreateSubventionRequest(int receiverId, int amount, int year)
+        {
+            ReceiverId = receiverId;
+            Amount = amount;
+            Year = year;
+        }
     }
 
     public class CreateSubventionResponse
