@@ -14,11 +14,11 @@ namespace SubventionsProject
         private AuthenticationForm authorization;
         private const Boolean Admin = true;
         private const Boolean User = false;
-        public const string UserCheck = "0";
+        public const string UserCheck = "User";
         public const string AdminCheck = "Distributor";
         private MainForm mainForm;
         public static string TypeUser { get; set; }
-        public static string Oranization { get; set; }
+        public static int Oranization { get; set; }
 
         public AuthenticationModel(AuthenticationForm authorization)
         {
@@ -41,13 +41,12 @@ namespace SubventionsProject
                 if (resp.User.RoleName == AdminCheck)
                 {
                     TypeUser = AdminCheck;
-                    OpenMain(Admin);
+                    OpenMain(Admin, AdminCheck, resp.User.OrganizationId);
                 }
-                //else if (list[0] != null && list[1] == UserCheck)
-                //{
-                //    TypeUser = UserCheck;
-                //    OpenMain(User);
-                //}
+                else
+                {
+                    OpenMain(User, UserCheck, resp.User.OrganizationId);
+                }
             } 
             else
             {
@@ -55,8 +54,11 @@ namespace SubventionsProject
             }
         }
 
-        public void OpenMain(Boolean check)
+        public void OpenMain(Boolean check, string type, int organizationId)
         {
+            TypeUser = type;
+            Oranization = organizationId;
+
             mainForm = MainForm.Initialize();
             authorization.Hide();
             mainForm.OpenMainForm(check);

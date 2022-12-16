@@ -29,7 +29,6 @@ namespace SubventionsProject
             #endregion
 
             CreateDataGrid();
-            filterForm = new FilterForm();
         }
 
         public static MainForm Initialize()
@@ -44,7 +43,11 @@ namespace SubventionsProject
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
 
-        private void FillterButton_Click(object sender, EventArgs e) => filterForm.ShowDialog();
+        private void FillterButton_Click(object sender, EventArgs e)
+        {
+            filterForm = new FilterForm();
+            filterForm.ShowDialog();
+        }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -90,17 +93,25 @@ namespace SubventionsProject
             {
                 var deserializedResponse = JsonConvert.DeserializeObject<List<GetSubventionResponse>>(getSubventionsResponse.Content.ReadAsStringAsync().Result);
                 var numberOfRows = 0;
+
                 foreach (var subvention in deserializedResponse)
                 {
-                    dataGridView1.Rows.Add();
-                    dataGridView1.Rows[numberOfRows].Cells[0].Value = subvention.Distributor.Name.ToString();
-                    dataGridView1.Rows[numberOfRows].Cells[1].Value = subvention.Receiver.Name.ToString();
-                    dataGridView1.Rows[numberOfRows].Cells[2].Value = subvention.Distributor.Name.ToString();
-                    dataGridView1.Rows[numberOfRows].Cells[3].Value = subvention.Year.Year.ToString();
-                    dataGridView1.Rows[numberOfRows].Cells[4].Value = subvention.Amount.ToString();
-                    dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToString().Substring(0, 5);
-                    dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
-                    numberOfRows++;
+                    if (subvention.Distributor.Id == AuthenticationModel.Oranization)
+                    {
+                        dataGridView1.Rows.Add();
+                        dataGridView1.Rows[numberOfRows].Cells[0].Value = subvention.Distributor.Name.ToString();
+                        dataGridView1.Rows[numberOfRows].Cells[1].Value = subvention.Receiver.Name.ToString();
+                        dataGridView1.Rows[numberOfRows].Cells[2].Value = subvention.Distributor.Name.ToString();
+                        dataGridView1.Rows[numberOfRows].Cells[3].Value = subvention.Year.Year.ToString();
+                        dataGridView1.Rows[numberOfRows].Cells[4].Value = subvention.Amount.ToString();
+                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToString().Substring(0, 5);
+                        dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
+                        numberOfRows++;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
             }
 

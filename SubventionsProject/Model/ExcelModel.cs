@@ -5,7 +5,7 @@ namespace SubventionsProject
 {
     public class ExcelModel
     {
-        MainForm mainForm;
+        private MainForm mainForm;
         public void Export()
         {
             mainForm = MainForm.Initialize();
