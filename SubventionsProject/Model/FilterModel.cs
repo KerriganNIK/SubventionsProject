@@ -5,15 +5,15 @@ namespace SubventionsProject
 {
     public class FilterModel
     {
-        private string getSubvention;
+        private string subventionReceiver;
         private string yearsSubvention;
         private string amountMoney;
         private string dateMoney;
         private MainForm mainForm;
 
-        public FilterModel(string getSubvention, string yearsSubvention, string amountMoney, string dateMoney)
+        public FilterModel(string subventionReceiver, string yearsSubvention, string amountMoney, string dateMoney)
         {
-            this.getSubvention = getSubvention;
+            this.subventionReceiver = subventionReceiver;
             this.yearsSubvention = yearsSubvention;
             this.amountMoney = amountMoney;
             this.dateMoney = dateMoney;
@@ -25,7 +25,7 @@ namespace SubventionsProject
 
             DataFillter();
 
-            if (getSubvention == "" && yearsSubvention == "" && amountMoney == "")
+            if (subventionReceiver == "" && yearsSubvention == "" && amountMoney == "")
             {
                 mainForm.UpdateData();
             }
@@ -35,23 +35,25 @@ namespace SubventionsProject
         {
             mainForm.UpdateData();
 
-            List<string> parrametrs = new List<string>();
-            parrametrs.Add(getSubvention);
-            parrametrs.Add(yearsSubvention);
-            parrametrs.Add(amountMoney);
-            parrametrs.Add(dateMoney);
+            List<string> parameters = new List<string>
+            {
+                subventionReceiver,
+                yearsSubvention,
+                amountMoney,
+                dateMoney
+            };
 
-            FilterLogic(parrametrs[0], parrametrs[1], parrametrs[2], parrametrs[3]);
+            FilterLogic(parameters[0], parameters[1], parameters[2], parameters[3]);
         }
 
-        public void FilterLogic(params string[] fillter)
+        public void FilterLogic(params string[] filter)
         {   
             int number = 0;
             int numberDataGrid = 1;
 
             for (int i = 0; i < mainForm.dataGridView1.Rows.Count; i++)
             {
-                if (mainForm.dataGridView1.Rows[i].Cells[numberDataGrid].Value.ToString() != fillter[number] && fillter[number] != "")
+                if (mainForm.dataGridView1.Rows[i].Cells[numberDataGrid].Value.ToString() != filter[number] && filter[number] != "")
                 {
                     mainForm.dataGridView1.Rows.RemoveAt(i);
                     i--;
@@ -59,7 +61,7 @@ namespace SubventionsProject
 
                 if (i == mainForm.dataGridView1.Rows.Count - 1)
                 {
-                    if (number != fillter.Count() - 1)
+                    if (number != filter.Count() - 1)
                     {
                         number++;
                         numberDataGrid++;

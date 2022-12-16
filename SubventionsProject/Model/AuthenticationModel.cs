@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using SubventionsProject.Data;
+using SubventionsProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace SubventionsProject
         public const string AdminCheck = "Distributor";
         private MainForm mainForm;
         public static string TypeUser { get; set; }
-        public static int Oranization { get; set; }
+        public static int Organization { get; set; }
 
         public AuthenticationModel(AuthenticationForm authorization)
         {
@@ -30,33 +32,33 @@ namespace SubventionsProject
             LoginRequest loginRequest = new LoginRequest(login, password);
             string json = JsonConvert.SerializeObject(loginRequest);
 
-            var result = DataBase.Client.PostAsync(DataBase.Uri + "/auth/login", new StringContent(json, Encoding.UTF8, "application/json")).Result; 
+            var loginResponse = DataBase.Client.PostAsync(DataBase.Uri + "/auth/login", new StringContent(json, Encoding.UTF8, "application/json")).Result;
 
-            if (result.IsSuccessStatusCode)
+            if (loginResponse.IsSuccessStatusCode)
             {
-                LoginResponse resp = JsonConvert.DeserializeObject<LoginResponse>(result.Content.ReadAsStringAsync().Result);
+                LoginResponse deserializedResponse = JsonConvert.DeserializeObject<LoginResponse>(loginResponse.Content.ReadAsStringAsync().Result);
 
-                DataBase.Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", resp.Token);
+                DataBase.Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", deserializedResponse.Token);
 
-                if (resp.User.RoleName == AdminCheck)
+                if (deserializedResponse.User.RoleName == AdminCheck)
                 {
-                    OpenMain(Admin, AdminCheck, resp.User.OrganizationId);
+                    OpenMain(Admin, AdminCheck, deserializedResponse.User.OrganizationId);
                 }
                 else
                 {
-                    OpenMain(User, UserCheck, resp.User.OrganizationId);
+                    OpenMain(User, UserCheck, deserializedResponse.User.OrganizationId);
                 }
             } 
             else
             {
-                MessageBox.Show("Неверный логин или пароль!");
+                MessageBox.Show(HttpErrorHelper.GetErrorMessage(loginResponse));
             }
         }
 
         public void OpenMain(Boolean check, string type, int organizationId)
         {
             TypeUser = type;
-            Oranization = organizationId;
+            Organization = organizationId;
 
             mainForm = MainForm.Initialize();
             authorization.Hide();

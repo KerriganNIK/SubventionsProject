@@ -56,9 +56,11 @@
     <Compile Include="Data\DistributeSubvention.cs" />
     <Compile Include="Data\GetOrganization.cs" />
     <Compile Include="Data\GetSubvention.cs" />
+    <Compile Include="Data\HttpError.cs" />
     <Compile Include="Data\UpdateSubvention.cs" />
     <Compile Include="Data\UserDto.cs" />
     <Compile Include="Data\CreateSubvention.cs" />
+    <Compile Include="Model\HttpErrorHelper.cs" />
     <Compile Include="Model\SubventionCardModel.cs" />
     <Compile Include="Model\TransactionModel.cs" />
     <Compile Include="Model\UpdateModel.cs" />

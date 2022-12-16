@@ -32,7 +32,7 @@
             this.AddButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.DeleteButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.OpenButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.FillterButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.FilterButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.ExportButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.ExitButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -90,16 +90,16 @@
             // 
             // FillterButton
             // 
-            this.FillterButton.Depth = 0;
-            this.FillterButton.Location = new System.Drawing.Point(1081, 298);
-            this.FillterButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.FillterButton.Name = "FillterButton";
-            this.FillterButton.Primary = true;
-            this.FillterButton.Size = new System.Drawing.Size(122, 39);
-            this.FillterButton.TabIndex = 5;
-            this.FillterButton.Text = "Фильтр реестра";
-            this.FillterButton.UseVisualStyleBackColor = true;
-            this.FillterButton.Click += new System.EventHandler(this.FillterButton_Click);
+            this.FilterButton.Depth = 0;
+            this.FilterButton.Location = new System.Drawing.Point(1081, 298);
+            this.FilterButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.FilterButton.Name = "FillterButton";
+            this.FilterButton.Primary = true;
+            this.FilterButton.Size = new System.Drawing.Size(122, 39);
+            this.FilterButton.TabIndex = 5;
+            this.FilterButton.Text = "Фильтр реестра";
+            this.FilterButton.UseVisualStyleBackColor = true;
+            this.FilterButton.Click += new System.EventHandler(this.FillterButton_Click);
             // 
             // ExportButton
             // 
@@ -150,7 +150,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.ExportButton);
-            this.Controls.Add(this.FillterButton);
+            this.Controls.Add(this.FilterButton);
             this.Controls.Add(this.OpenButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
@@ -166,7 +166,7 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private MaterialSkin.Controls.MaterialRaisedButton FillterButton;
+        private MaterialSkin.Controls.MaterialRaisedButton FilterButton;
         private MaterialSkin.Controls.MaterialRaisedButton ExportButton;
         private MaterialSkin.Controls.MaterialRaisedButton ExitButton;
         public MaterialSkin.Controls.MaterialRaisedButton AddButton;

@@ -12,30 +12,31 @@ namespace SubventionsProject.Model
 {
     internal class TransactionModel
     {
-
         public int Amount { get; set; }
         public DateTime Date { get; set; }
+        public int SubventionId { get; set; }
 
-        public TransactionModel(int amount, DateTime date)
+        public TransactionModel(int amount, DateTime date, int subventionId)
         {
             Amount = amount;
             Date = date;
+            SubventionId = subventionId;
         }
 
-        public void AddTransaction()
+        public bool AddTransaction()
         {
             var createTransactionRequest = new CreateTransactionRequest(Amount, Date);
             var serializedRequest = JsonConvert.SerializeObject(createTransactionRequest);
             var requestContent = new StringContent(serializedRequest, Encoding.UTF8, "Application/json");
-            var createTransactionResponse = DataBase.Client.PostAsync(DataBase.Uri + "/subventions/:id/transactions", requestContent).Result;
+            var createTransactionResponse = DataBase.Client.PostAsync(DataBase.Uri + $"/subventions/{SubventionId}/transactions", requestContent).Result;
             if (createTransactionResponse.IsSuccessStatusCode)
             {
-                // по идее надо обновить датагрид с транзакциями в карточке субвенции
+                return true;
             }
             else
             {
-                // TODO: нужно как-то достать из сообщения ниже title — это сообщение ошибки, которое надо отобразить пользователю
-                MessageBox.Show(createTransactionResponse.Content.ReadAsStringAsync().Result);
+                MessageBox.Show(HttpErrorHelper.GetErrorMessage(createTransactionResponse));
+                return false;
             }
         }
     }

@@ -9,8 +9,9 @@ namespace SubventionsProject.View
     public partial class TransactionForm : MaterialForm
     {
         private TransactionModel transactionModel;
+        private int subventionId;
 
-        public TransactionForm()
+        public TransactionForm(int subnvetionId)
         {
             InitializeComponent();
 
@@ -20,6 +21,8 @@ namespace SubventionsProject.View
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             #endregion
+
+            subventionId = subnvetionId;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -31,9 +34,8 @@ namespace SubventionsProject.View
         {
             if (AmountTextBox.Text != "" && dateTimePicker1.Text != "")
             {
-                transactionModel = new TransactionModel(Convert.ToInt32(AmountTextBox.Text), dateTimePicker1.Value);
-                transactionModel.AddTransaction();
-                Close();
+                transactionModel = new TransactionModel(Convert.ToInt32(AmountTextBox.Text), dateTimePicker1.Value, subventionId);
+                if (transactionModel.AddTransaction()) Close();
             }
             else
             {

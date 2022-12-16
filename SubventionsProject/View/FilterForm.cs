@@ -45,7 +45,7 @@ namespace SubventionsProject
 
                 foreach (var items in deserializedResponse)
                 {
-                    if (items.Distributor.Id == AuthenticationModel.Oranization)
+                    if (items.Distributor.Id == AuthenticationModel.Organization)
                     {
                         comboGetSubvention.Items.Add(items.Receiver.Name.ToString());
                         comboYears.Items.Add(items.Year.Year.ToString());

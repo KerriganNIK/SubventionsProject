@@ -96,7 +96,7 @@ namespace SubventionsProject
 
                 foreach (var subvention in deserializedResponse)
                 {
-                    if (subvention.Distributor.Id == AuthenticationModel.Oranization)
+                    if (subvention.Distributor.Id == AuthenticationModel.Organization)
                     {
                         dataGridView1.Rows.Add();
                         dataGridView1.Rows[numberOfRows].Cells[0].Value = subvention.Distributor.Name.ToString();
@@ -129,7 +129,6 @@ namespace SubventionsProject
 
         private void CreateDataGrid()
         {
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DataGridViewTextBoxColumn Column0 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn Column1 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn Column2 = new DataGridViewTextBoxColumn();

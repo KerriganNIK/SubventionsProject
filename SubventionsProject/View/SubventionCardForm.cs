@@ -15,8 +15,8 @@ namespace SubventionsProject
     public partial class SubventionCardForm : MaterialForm
     {
         private SubventionCardModel subventionCardModel;
-        private int idSubvention;
-        public SubventionCardForm(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney, string dateMoney, int idSubvention)
+        private int subventionId;
+        public SubventionCardForm(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney, string dateMoney, int subventionId)
         {
             InitializeComponent();
 
@@ -31,9 +31,9 @@ namespace SubventionsProject
             distributorText.Text = distributorSubvention;
             YearText.Text = yearsSubvention;
             AmountText.Text = amountMoney;
-            this.idSubvention = idSubvention;
+            this.subventionId = subventionId;
 
-            UpadateDataSubvention();
+            RefillTransactionTable();
             UserButton(getSubvention, dateMoney);
             LoadDataComboBox(getSubvention);
         }
@@ -55,9 +55,27 @@ namespace SubventionsProject
 
         private void ButtonClose_Click(object sender, EventArgs e) => Close();
 
-        public void UpadateDataSubvention()
+        public void RefillTransactionTable()
         {
-            //Заполнить данные в dataGrid
+            if (transactionsDataGridView.Rows.Count != 0)
+                transactionsDataGridView.Rows.Clear();
+            var getSubventionResponse = DataBase.Client.GetAsync(DataBase.Uri + $"/subventions/{subventionId}").Result;
+            if (getSubventionResponse.IsSuccessStatusCode)
+            {
+                var deserializedResponse = JsonConvert.DeserializeObject<GetSubventionResponse>(getSubventionResponse.Content.ReadAsStringAsync().Result);
+                var numberOfRows = 0;
+                foreach (var transaction in deserializedResponse.Transactions)
+                {
+                    transactionsDataGridView.Rows.Add();
+                    transactionsDataGridView.Rows[numberOfRows].Cells[0].Value = transaction.Amount;
+                    transactionsDataGridView.Rows[numberOfRows].Cells[1].Value = transaction.Date;
+                    numberOfRows++;
+                }
+            }
+            else
+            {
+                MessageBox.Show(HttpErrorHelper.GetErrorMessage(getSubventionResponse));
+            }
         }
 
         public void TurnButtonsVisibility(Boolean check)
@@ -96,7 +114,8 @@ namespace SubventionsProject
 
         private void AddTransactionButton_Click(object sender, EventArgs e)
         {
-            new TransactionForm().ShowDialog();
+            new TransactionForm(subventionId).ShowDialog();
+            RefillTransactionTable();
         }
 
         private void LoadDataComboBox(string getSubvention)

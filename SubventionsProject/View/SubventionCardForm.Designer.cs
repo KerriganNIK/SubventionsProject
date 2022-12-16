@@ -35,7 +35,7 @@
             this.ButtonClose = new MaterialSkin.Controls.MaterialRaisedButton();
             this.ButtonWrite = new MaterialSkin.Controls.MaterialRaisedButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridSubvention = new System.Windows.Forms.DataGridView();
+            this.transactionsDataGridView = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,7 +47,9 @@
             this.getSubventionComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.municipalityText = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridSubvention)).BeginInit();
+            this.TransactionAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TransactionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // AddTransactionButton
@@ -123,17 +125,22 @@
             this.label7.TabIndex = 65;
             this.label7.Text = "Транзакции субвенции";
             // 
-            // dataGridSubvention
+            // transactionsDataGridView
             // 
-            this.dataGridSubvention.AllowUserToAddRows = false;
-            this.dataGridSubvention.AllowUserToDeleteRows = false;
-            this.dataGridSubvention.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridSubvention.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridSubvention.Location = new System.Drawing.Point(35, 355);
-            this.dataGridSubvention.Name = "dataGridSubvention";
-            this.dataGridSubvention.ReadOnly = true;
-            this.dataGridSubvention.Size = new System.Drawing.Size(778, 274);
-            this.dataGridSubvention.TabIndex = 64;
+            this.transactionsDataGridView.AllowUserToAddRows = false;
+            this.transactionsDataGridView.AllowUserToDeleteRows = false;
+            this.transactionsDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.transactionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.transactionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TransactionAmount,
+            this.TransactionDate});
+            this.transactionsDataGridView.Location = new System.Drawing.Point(35, 355);
+            this.transactionsDataGridView.MultiSelect = false;
+            this.transactionsDataGridView.Name = "transactionsDataGridView";
+            this.transactionsDataGridView.ReadOnly = true;
+            this.transactionsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.transactionsDataGridView.Size = new System.Drawing.Size(778, 274);
+            this.transactionsDataGridView.TabIndex = 64;
             // 
             // label5
             // 
@@ -228,6 +235,20 @@
             this.municipalityText.Size = new System.Drawing.Size(423, 20);
             this.municipalityText.TabIndex = 74;
             // 
+            // TransactionAmount
+            // 
+            this.TransactionAmount.HeaderText = "Объём транзакции";
+            this.TransactionAmount.Name = "TransactionAmount";
+            this.TransactionAmount.ReadOnly = true;
+            this.TransactionAmount.Width = 200;
+            // 
+            // TransactionDate
+            // 
+            this.TransactionDate.HeaderText = "Дата транзакции";
+            this.TransactionDate.Name = "TransactionDate";
+            this.TransactionDate.ReadOnly = true;
+            this.TransactionDate.Width = 300;
+            // 
             // SubventionCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -240,7 +261,7 @@
             this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.ButtonWrite);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.dataGridSubvention);
+            this.Controls.Add(this.transactionsDataGridView);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -254,7 +275,7 @@
             this.Controls.Add(this.getSubventionText);
             this.Name = "SubventionCardForm";
             this.Text = "Карточка субвенции";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridSubvention)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,7 +289,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton ButtonClose;
         private MaterialSkin.Controls.MaterialRaisedButton ButtonWrite;
         private System.Windows.Forms.Label label7;
-        public System.Windows.Forms.DataGridView dataGridSubvention;
+        public System.Windows.Forms.DataGridView transactionsDataGridView;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -280,5 +301,7 @@
         public System.Windows.Forms.ComboBox getSubventionComboBox;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox municipalityText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TransactionAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TransactionDate;
     }
 }
