@@ -33,7 +33,8 @@ namespace SubventionsProject.Model
             }
             else
             {
-                MessageBox.Show(createTransactionResponse.Content.ToString());
+                // TODO: обработать ошибку; вывести сообщение, указанное в ошибке
+                //MessageBox.Show(createTransactionResponse.Content.ToString());
             }
         }
     }
