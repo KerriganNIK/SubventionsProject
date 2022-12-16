@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.AddTransactionButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.AmountText = new System.Windows.Forms.TextBox();
+            this.YearText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ButtonClose = new MaterialSkin.Controls.MaterialRaisedButton();
             this.ButtonWrite = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -41,14 +41,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.getSubventionText = new System.Windows.Forms.TextBox();
+            this.distributorText = new System.Windows.Forms.TextBox();
+            this.DateText = new System.Windows.Forms.TextBox();
+            this.getSubventionComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.municipalityText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSubvention)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,19 +63,19 @@
             this.AddTransactionButton.UseVisualStyleBackColor = true;
             this.AddTransactionButton.Click += new System.EventHandler(this.AddTransactionButton_Click);
             // 
-            // textBox2
+            // AmountText
             // 
-            this.textBox2.Location = new System.Drawing.Point(390, 228);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(423, 20);
-            this.textBox2.TabIndex = 71;
+            this.AmountText.Location = new System.Drawing.Point(390, 228);
+            this.AmountText.Name = "AmountText";
+            this.AmountText.Size = new System.Drawing.Size(423, 20);
+            this.AmountText.TabIndex = 71;
             // 
-            // textBox1
+            // YearText
             // 
-            this.textBox1.Location = new System.Drawing.Point(390, 198);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(423, 20);
-            this.textBox1.TabIndex = 70;
+            this.YearText.Location = new System.Drawing.Point(390, 194);
+            this.YearText.Name = "YearText";
+            this.YearText.Size = new System.Drawing.Size(423, 20);
+            this.YearText.TabIndex = 70;
             // 
             // label6
             // 
@@ -187,57 +185,34 @@
             this.label1.TabIndex = 56;
             this.label1.Text = "Муниципальное образование:";
             // 
-            // textBox5
+            // getSubventionText
             // 
-            this.textBox5.Location = new System.Drawing.Point(390, 80);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(423, 20);
-            this.textBox5.TabIndex = 74;
+            this.getSubventionText.Location = new System.Drawing.Point(390, 121);
+            this.getSubventionText.Name = "getSubventionText";
+            this.getSubventionText.Size = new System.Drawing.Size(423, 20);
+            this.getSubventionText.TabIndex = 73;
             // 
-            // textBox4
+            // distributorText
             // 
-            this.textBox4.Location = new System.Drawing.Point(390, 121);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(423, 20);
-            this.textBox4.TabIndex = 73;
+            this.distributorText.Location = new System.Drawing.Point(390, 157);
+            this.distributorText.Name = "distributorText";
+            this.distributorText.Size = new System.Drawing.Size(423, 20);
+            this.distributorText.TabIndex = 72;
             // 
-            // textBox3
+            // DateText
             // 
-            this.textBox3.Location = new System.Drawing.Point(390, 157);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(423, 20);
-            this.textBox3.TabIndex = 72;
+            this.DateText.Location = new System.Drawing.Point(390, 264);
+            this.DateText.Name = "DateText";
+            this.DateText.Size = new System.Drawing.Size(423, 20);
+            this.DateText.TabIndex = 75;
             // 
-            // textBox6
+            // getSubventionComboBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(390, 264);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(423, 20);
-            this.textBox6.TabIndex = 75;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(390, 80);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(423, 21);
-            this.comboBox1.TabIndex = 61;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(390, 120);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(423, 21);
-            this.comboBox2.TabIndex = 62;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(390, 156);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(423, 21);
-            this.comboBox3.TabIndex = 63;
+            this.getSubventionComboBox.FormattingEnabled = true;
+            this.getSubventionComboBox.Location = new System.Drawing.Point(390, 120);
+            this.getSubventionComboBox.Name = "getSubventionComboBox";
+            this.getSubventionComboBox.Size = new System.Drawing.Size(423, 21);
+            this.getSubventionComboBox.TabIndex = 62;
             // 
             // dateTimePicker1
             // 
@@ -246,14 +221,21 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(423, 20);
             this.dateTimePicker1.TabIndex = 69;
             // 
+            // municipalityText
+            // 
+            this.municipalityText.Location = new System.Drawing.Point(390, 80);
+            this.municipalityText.Name = "municipalityText";
+            this.municipalityText.Size = new System.Drawing.Size(423, 20);
+            this.municipalityText.TabIndex = 74;
+            // 
             // SubventionCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(849, 711);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.YearText);
             this.Controls.Add(this.AddTransactionButton);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.AmountText);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.ButtonWrite);
@@ -264,14 +246,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.DateText);
+            this.Controls.Add(this.getSubventionComboBox);
             this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.municipalityText);
+            this.Controls.Add(this.distributorText);
+            this.Controls.Add(this.getSubventionText);
             this.Name = "SubventionCardForm";
             this.Text = "Карточка субвенции";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSubvention)).EndInit();
@@ -282,8 +262,8 @@
 
         #endregion
         private MaterialSkin.Controls.MaterialRaisedButton AddTransactionButton;
-        public System.Windows.Forms.TextBox textBox2;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox AmountText;
+        public System.Windows.Forms.TextBox YearText;
         private System.Windows.Forms.Label label6;
         private MaterialSkin.Controls.MaterialRaisedButton ButtonClose;
         private MaterialSkin.Controls.MaterialRaisedButton ButtonWrite;
@@ -294,13 +274,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox6;
-        public System.Windows.Forms.ComboBox comboBox1;
-        public System.Windows.Forms.ComboBox comboBox2;
-        public System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox getSubventionText;
+        private System.Windows.Forms.TextBox distributorText;
+        private System.Windows.Forms.TextBox DateText;
+        public System.Windows.Forms.ComboBox getSubventionComboBox;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox municipalityText;
     }
 }

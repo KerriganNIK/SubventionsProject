@@ -31,7 +31,7 @@ namespace SubventionsProject
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            filterModel = new FilterModel(comboMunicipal.Text, comboGetSubvention.Text, comboSetSubvention.Text, comboYears.Text, comboSum.Text, comboDate.Text);
+            filterModel = new FilterModel(comboGetSubvention.Text, comboYears.Text, comboSum.Text, comboDate.Text);
             filterModel.FilterDate();
         }
 
@@ -47,9 +47,7 @@ namespace SubventionsProject
                 {
                     if (items.Distributor.Id == AuthenticationModel.Oranization)
                     {
-                        comboMunicipal.Items.Add(items.Distributor.Name.ToString());
                         comboGetSubvention.Items.Add(items.Receiver.Name.ToString());
-                        comboSetSubvention.Items.Add(items.Distributor.Name.ToString());
                         comboYears.Items.Add(items.Year.Year.ToString());
                         comboSum.Items.Add(items.Amount.ToString());
                         comboDate.Items.Add(items.Year.ToString().Substring(0, 5));
@@ -60,7 +58,7 @@ namespace SubventionsProject
                     }
                 }
 
-                ComboBox[] comboBoxs = { comboMunicipal, comboGetSubvention, comboSetSubvention, comboYears, comboSum, comboDate };
+                ComboBox[] comboBoxs = { comboGetSubvention, comboYears, comboSum, comboDate };
 
                 for (int i = 0; i < comboBoxs.Length; i++)
                 {
