@@ -31,6 +31,7 @@ namespace SubventionsProject.Model
                 Amount = amount
             };
             var serializedRequest = JsonConvert.SerializeObject(updateSubventionRequest);
+            // TODO: передать в запросе ID
             var request = new HttpRequestMessage(new HttpMethod("PATCH"), DataBase.Uri + "/subventions/:id")
             {
                 Content = new StringContent(serializedRequest, Encoding.UTF8, "Application/json")

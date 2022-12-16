@@ -17,7 +17,7 @@ namespace SubventionsProject
 {
     public partial class SubventionCardForm : MaterialForm
     {
-        private SubventionCardModel subventionCard;
+        private SubventionCardModel subventionCardModel;
         public SubventionCardForm(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney/*, string dateMoney*/)
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace SubventionsProject
         {
             //Изменение данных
 
-            subventionCard = new SubventionCardModel(comboBox1.Text, comboBox2.Text, comboBox3.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Text, this);
+            subventionCardModel = new SubventionCardModel(comboBox1.Text, comboBox2.Text, comboBox3.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Text, this);
             //subventionCard.SubventionEdit();
 
             new UpdateModel(Convert.ToInt32(comboBox2.Text), Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox1.Text))

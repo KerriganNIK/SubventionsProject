@@ -12,6 +12,7 @@ namespace SubventionsProject.Model
 {
     internal class TransactionModel
     {
+
         public int Amount { get; set; }
         public DateTime Date { get; set; }
 
@@ -33,8 +34,8 @@ namespace SubventionsProject.Model
             }
             else
             {
-                // TODO: обработать ошибку; вывести сообщение, указанное в ошибке
-                //MessageBox.Show(createTransactionResponse.Content.ToString());
+                // TODO: нужно как-то достать из сообщения ниже title — это сообщение ошибки, которое надо отобразить пользователю
+                MessageBox.Show(createTransactionResponse.Content.ReadAsStringAsync().Result);
             }
         }
     }
