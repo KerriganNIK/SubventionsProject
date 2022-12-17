@@ -70,7 +70,7 @@ namespace SubventionsProject
         {
             Logger.Info("Запускает окно добавления субвенций");
 
-            registrationCardForm = new RegistrationCardForm();
+            registrationCardForm = new RegistrationCardForm(null, "1");
             registrationCardForm.ShowDialog();
         }
 
@@ -112,7 +112,7 @@ namespace SubventionsProject
             }
         }
 
-        public void OpenMainForm(Boolean check)
+        public void OpenMainForm(Boolean check, int organizationId)
         {
             UpdateData();
 
@@ -122,6 +122,12 @@ namespace SubventionsProject
             DeleteButton.Enabled = check;
             DistributeButton.Visible = check;
             DistributeButton.Enabled = check;
+
+            if (AddButton.Visible == true && organizationId != 1)
+            {
+                AddButton.Visible = false;
+                AddButton.Enabled = false;
+            }
 
             ShowDialog();
         }
@@ -152,6 +158,7 @@ namespace SubventionsProject
                             ? subvention.Transactions.Last().Date.ToShortDateString()
                             : "—";
                         dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
+                        dataGridView1.Rows[numberOfRows].Cells[7].Value = subvention.Receiver.Id.ToString();
                         numberOfRows++;
                     }
                     else
@@ -191,26 +198,37 @@ namespace SubventionsProject
             DataGridViewTextBoxColumn Column4 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn Column5 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn Column6 = new DataGridViewTextBoxColumn();
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column0, Column1, Column2, Column3, Column4, Column5, Column6 });
+            DataGridViewTextBoxColumn Column7 = new DataGridViewTextBoxColumn();
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column0, Column1, Column2, Column3, Column4, Column5, Column6, Column7 });
+            
             Column0.HeaderText = "Муниципальное образование";
             Column0.DataPropertyName = "Municipality";
             Column0.Width = 145;
+            
             Column1.HeaderText = "Получатель субвенции";
             Column1.DataPropertyName = "GetSubvention";
             Column1.Width = 145;
+            
             Column2.HeaderText = "Распределитель субвенции";
             Column2.DataPropertyName = "SetSubvention";
             Column2.Width = 145;
+            
             Column3.HeaderText = "Год выдачи субвенции";
             Column3.DataPropertyName = "Years";
             Column3.Width = 70;
+            
             Column4.HeaderText = "Объём субвенции";
             Column4.DataPropertyName = "Amount";
+            
             Column5.HeaderText = "Дата получения денежных средств";
             Column5.DataPropertyName = "Date";
             Column5.Width = 135;
+            
             Column6.HeaderText = "Id субвенции";
             Column6.DataPropertyName = "Id";
+
+            Column7.DataPropertyName = "receiverId";
+            Column7.Visible = false;
         }
 
         private void DistributeButton_Click(object sender, EventArgs e)
@@ -219,7 +237,7 @@ namespace SubventionsProject
             {
                 Logger.Info("Запускает окно добавления");
 
-                registrationCardForm = new RegistrationCardForm(dataGridView1.CurrentRow.Cells[6].Value.ToString());
+                registrationCardForm = new RegistrationCardForm(dataGridView1.CurrentRow.Cells[6].Value.ToString(), dataGridView1.CurrentRow.Cells[7].Value.ToString());
                 registrationCardForm.ShowDialog();
             }
             else

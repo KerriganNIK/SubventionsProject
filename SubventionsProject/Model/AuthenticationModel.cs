@@ -67,7 +67,7 @@ namespace SubventionsProject
 
             mainForm = MainForm.Initialize();
             authorization.Hide();
-            mainForm.OpenMainForm(check);
+            mainForm.OpenMainForm(check, organizationId);
         }
     }
 }

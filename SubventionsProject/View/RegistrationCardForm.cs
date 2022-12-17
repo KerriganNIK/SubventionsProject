@@ -15,10 +15,11 @@ namespace SubventionsProject
     {
         private RegistrationModel registrationModel;
         private string parentSubventionId;
+        private string parentOrganizationId;
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
 
-        public RegistrationCardForm(string parentSubventionId = null)
+        public RegistrationCardForm(string parentSubventionId = null, string parentOrganizationId = null)
         {
             InitializeComponent();
 
@@ -29,9 +30,8 @@ namespace SubventionsProject
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             #endregion
 
-            LoadDataComboBox();
-
             this.parentSubventionId = parentSubventionId;
+            this.parentOrganizationId = parentOrganizationId;
 
             if (parentSubventionId == null)
             {
@@ -41,6 +41,8 @@ namespace SubventionsProject
             {
                 Text = "Распределение субвенции";
             }
+
+            LoadDataComboBox();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace SubventionsProject
             dataTable.Columns.Add("Id");
             dataTable.Columns.Add("Name");
 
-            var GetOrganizationResponse = DataBase.Client.GetAsync(DataBase.Uri + "/organizations").Result;
+            var GetOrganizationResponse = DataBase.Client.GetAsync(DataBase.Uri + $"/organizations?parentOrganizationId={parentOrganizationId}").Result;
 
             if (GetOrganizationResponse.IsSuccessStatusCode)
             {
