@@ -147,7 +147,7 @@ namespace SubventionsProject
                         dataGridView1.Rows[numberOfRows].Cells[2].Value = subvention.Distributor.Name.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[3].Value = subvention.Year.Year.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[4].Value = subvention.Amount.ToString();
-                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToString().Substring(0,5);
+                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToShortDateString();
                         dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
                         numberOfRows++;
                     }
@@ -222,6 +222,7 @@ namespace SubventionsProject
             else
             {
                 MessageBox.Show("Нечего распределять", "Ошибка распределения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Warn("В таблице отсутвуют записи");
             }
         }
     }
