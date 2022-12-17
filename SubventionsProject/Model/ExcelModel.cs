@@ -14,7 +14,7 @@ namespace SubventionsProject
         {
             mainForm = MainForm.Initialize();
 
-            Excel.Application excel = new Excel.Application();
+            Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
 
             excel.Application.Workbooks.Add(Type.Missing);
             Excel.Worksheet worksheet = (Excel.Worksheet)excel.ActiveSheet;

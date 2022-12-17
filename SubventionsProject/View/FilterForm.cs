@@ -60,7 +60,9 @@ namespace SubventionsProject
                         comboGetSubvention.Items.Add(items.Receiver.Name.ToString());
                         comboYears.Items.Add(items.Year.Year.ToString());
                         comboSum.Items.Add(items.Amount.ToString());
-                        comboDate.Items.Add(items.Year.ToString().Substring(0, 5));
+                        comboDate.Items.Add(items.Transactions.Count > 0
+                            ? items.Transactions.Last().Date.ToShortDateString()
+                            : "—");
                     }
                     else
                     {
