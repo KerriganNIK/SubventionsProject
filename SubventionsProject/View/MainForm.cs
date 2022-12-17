@@ -75,11 +75,20 @@ namespace SubventionsProject
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
-            Logger.Info("Открывает окно с информацией о субвениции и транзакциях");
-            Logger.Debug("Передаёт данные о субвенции");
+            if (RegistryIsNotEmpty())
+            {
+                Logger.Info("Открывает окно с информацией о субвениции и транзакциях");
+                Logger.Debug("Передаёт данные о субвенции");
 
-            subventhionCard = new SubventionCardForm(dataGridView1.CurrentRow.Cells[0].Value.ToString(), dataGridView1.CurrentRow.Cells[1].Value.ToString(), dataGridView1.CurrentRow.Cells[2].Value.ToString(), dataGridView1.CurrentRow.Cells[3].Value.ToString(), dataGridView1.CurrentRow.Cells[4].Value.ToString(), dataGridView1.CurrentRow.Cells[5].Value.ToString(), Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value.ToString()));
-            subventhionCard.ShowDialog();
+                subventhionCard = new SubventionCardForm(dataGridView1.CurrentRow.Cells[0].Value.ToString(), dataGridView1.CurrentRow.Cells[1].Value.ToString(), dataGridView1.CurrentRow.Cells[2].Value.ToString(), dataGridView1.CurrentRow.Cells[3].Value.ToString(), dataGridView1.CurrentRow.Cells[4].Value.ToString(), dataGridView1.CurrentRow.Cells[5].Value.ToString(), Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value.ToString()));
+                subventhionCard.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("В таблице нет записей!", "Ошибка открытия", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Logger.Warn("В таблице отсутвуют записи");
+            }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
