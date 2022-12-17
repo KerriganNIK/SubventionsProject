@@ -41,7 +41,7 @@
             // CloseButton
             // 
             this.CloseButton.Depth = 0;
-            this.CloseButton.Location = new System.Drawing.Point(573, 203);
+            this.CloseButton.Location = new System.Drawing.Point(396, 203);
             this.CloseButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Primary = true;
@@ -54,7 +54,7 @@
             // OkButton
             // 
             this.OkButton.Depth = 0;
-            this.OkButton.Location = new System.Drawing.Point(15, 203);
+            this.OkButton.Location = new System.Drawing.Point(237, 203);
             this.OkButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.OkButton.Name = "OkButton";
             this.OkButton.Primary = true;
@@ -147,6 +147,7 @@
             this.Controls.Add(this.label2);
             this.Name = "RegistrationCardForm";
             this.Text = "Учётная карточка";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RegistrationCardForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

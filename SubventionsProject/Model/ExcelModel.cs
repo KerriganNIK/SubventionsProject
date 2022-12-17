@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using NLog;
+using System;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SubventionsProject
@@ -6,6 +8,8 @@ namespace SubventionsProject
     public class ExcelModel
     {
         private MainForm mainForm;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         public void Export()
         {
             mainForm = MainForm.Initialize();
@@ -27,6 +31,8 @@ namespace SubventionsProject
             }
 
             excel.Visible = true;
+
+            Logger.Debug("Выполняется экспорт в Excel");
         }
     }
 }

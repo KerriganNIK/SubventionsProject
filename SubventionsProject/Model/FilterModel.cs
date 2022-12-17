@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Logging;
+using NLog;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SubventionsProject
@@ -10,6 +12,8 @@ namespace SubventionsProject
         private string amountMoney;
         private string dateMoney;
         private MainForm mainForm;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
 
         public FilterModel(string subventionReceiver, string yearsSubvention, string amountMoney, string dateMoney)
         {
@@ -44,6 +48,8 @@ namespace SubventionsProject
             };
 
             FilterLogic(parameters[0], parameters[1], parameters[2], parameters[3]);
+
+            Logger.Debug("Происходит алгоритм фильтрации");
         }
 
         public void FilterLogic(params string[] filter)

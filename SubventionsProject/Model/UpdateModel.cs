@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NLog;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace SubventionsProject.Model
         private int year;
         private int receiverId;
         private int subvetionId;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private MainForm mainForm;
 
         public UpdateModel(int amount, int year, int receiverId, int subventionId)
         {
@@ -25,23 +28,24 @@ namespace SubventionsProject.Model
             this.subvetionId = subventionId;
         }
 
-        /// <summary>
-        /// Returns true if updated succesfully; otherwise false.
-        /// </summary>
-        public bool UpdateSubvention()
+        public void UpdateSubvention()
         {
+            mainForm = MainForm.Initialize();
             var updateSubventionRequest = new UpdateSubventionRequest(amount, year, receiverId);
             var serializedRequest = JsonConvert.SerializeObject(updateSubventionRequest);
             var requestContent = new StringContent(serializedRequest, Encoding.UTF8, "Application/json");
             var updateTransactionResponse = DataBase.Client.PutAsync(DataBase.Uri + $"/subventions/{subvetionId}", requestContent).Result;
+
             if (updateTransactionResponse.IsSuccessStatusCode)
             {
-                return true;
+                Logger.Debug("Изменяет данные о субвенции");
+                mainForm = MainForm.Initialize();
+                mainForm.UpdateData();
             }
             else
             {
                 MessageBox.Show(HttpErrorHelper.GetErrorMessage(updateTransactionResponse));
-                return false;
+                Logger.Warn($"{HttpErrorHelper.GetErrorMessage(updateTransactionResponse)}");
             }
         }
     }

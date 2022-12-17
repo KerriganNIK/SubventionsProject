@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NLog;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace SubventionsProject.Model
         public int Amount { get; set; }
         public DateTime Date { get; set; }
         public int SubventionId { get; set; }
+        private const Boolean Successfully = true;
+        private const Boolean Successless = false;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public TransactionModel(int amount, DateTime date, int subventionId)
         {
@@ -23,23 +27,23 @@ namespace SubventionsProject.Model
             SubventionId = subventionId;
         }
 
-        /// <summary>
-        /// Returns true if added succesfully; otherwise false.
-        /// </summary>
         public bool AddTransaction()
         {
             var createTransactionRequest = new CreateTransactionRequest(Amount, Date);
             var serializedRequest = JsonConvert.SerializeObject(createTransactionRequest);
             var requestContent = new StringContent(serializedRequest, Encoding.UTF8, "Application/json");
             var createTransactionResponse = DataBase.Client.PostAsync(DataBase.Uri + $"/subventions/{SubventionId}/transactions", requestContent).Result;
+
             if (createTransactionResponse.IsSuccessStatusCode)
             {
-                return true;
+                Logger.Debug("Добавляет транзакцию");
+                return Successfully;
             }
             else
             {
                 MessageBox.Show(HttpErrorHelper.GetErrorMessage(createTransactionResponse));
-                return false;
+                Logger.Warn($"{HttpErrorHelper.GetErrorMessage(createTransactionResponse)}");
+                return Successless;
             }
         }
     }

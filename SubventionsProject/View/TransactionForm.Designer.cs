@@ -39,26 +39,26 @@
             // WriteButton
             // 
             this.WriteButton.Depth = 0;
-            this.WriteButton.Location = new System.Drawing.Point(385, 162);
+            this.WriteButton.Location = new System.Drawing.Point(218, 174);
             this.WriteButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.WriteButton.Name = "WriteButton";
             this.WriteButton.Primary = true;
-            this.WriteButton.Size = new System.Drawing.Size(122, 39);
+            this.WriteButton.Size = new System.Drawing.Size(109, 39);
             this.WriteButton.TabIndex = 3;
-            this.WriteButton.Text = "Записать";
+            this.WriteButton.Text = "Ок";
             this.WriteButton.UseVisualStyleBackColor = true;
             this.WriteButton.Click += new System.EventHandler(this.WriteButton_Click);
             // 
             // CancelButton
             // 
             this.CancelButton.Depth = 0;
-            this.CancelButton.Location = new System.Drawing.Point(513, 162);
+            this.CancelButton.Location = new System.Drawing.Point(351, 174);
             this.CancelButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Primary = true;
-            this.CancelButton.Size = new System.Drawing.Size(122, 39);
+            this.CancelButton.Size = new System.Drawing.Size(106, 39);
             this.CancelButton.TabIndex = 4;
-            this.CancelButton.Text = "Отменить";
+            this.CancelButton.Text = "Отмена";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 222);
+            this.ClientSize = new System.Drawing.Size(657, 247);
             this.Controls.Add(this.AmountTextBox);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label6);
@@ -117,6 +117,7 @@
             this.Controls.Add(this.WriteButton);
             this.Name = "TransactionForm";
             this.Text = "Новая транзакция";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TransactionForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

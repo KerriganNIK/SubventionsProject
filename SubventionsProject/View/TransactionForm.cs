@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using NLog;
 using SubventionsProject.Model;
 using System;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace SubventionsProject.View
     {
         private TransactionModel transactionModel;
         private int subventionId;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public TransactionForm(int subnvetionId)
         {
@@ -27,6 +29,7 @@ namespace SubventionsProject.View
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            Logger.Info("Окно добавления транзакций закрыто");
             Close();
         }
 
@@ -34,13 +37,25 @@ namespace SubventionsProject.View
         {
             if (AmountTextBox.Text != "" && dateTimePicker1.Text != "")
             {
+
                 transactionModel = new TransactionModel(Convert.ToInt32(AmountTextBox.Text), dateTimePicker1.Value, subventionId);
-                if (transactionModel.AddTransaction()) Close();
+
+                if (transactionModel.AddTransaction())
+                {
+                    Logger.Info("Закрывает окно добавления транзакций");
+                    Close();
+                }
             }
             else
             {
                 MessageBox.Show("Заполните все поля!");
             }
+        }
+
+        private void TransactionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Logger.Info("Окно добавления транзакций закрыто");
+            Close();
         }
     }
 }

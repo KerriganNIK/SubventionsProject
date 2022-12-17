@@ -1,4 +1,6 @@
-﻿using SubventionsProject.Model;
+﻿using Microsoft.Extensions.Logging;
+using NLog;
+using SubventionsProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +12,29 @@ namespace SubventionsProject
 {
     public class DeleteModel
     {
-        private MainForm mainForm;
         private string subventionId;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private MainForm mainForm;
 
         public DeleteModel(string subventionId)
         {
             this.subventionId = subventionId;
         }
 
-        /// <summary>
-        /// Returns true if deleted succesfully; otherwise false.
-        /// </summary>
-        public bool Delete()
+        public void Delete()
         {
+            mainForm = MainForm.Initialize();
             var deleteSubventionResponse = DataBase.Client.DeleteAsync(DataBase.Uri + $"/subventions/{subventionId}").Result;
+
             if (deleteSubventionResponse.IsSuccessStatusCode)
             {
-                return true;
+                Logger.Debug("Производится удаление");
+                mainForm.UpdateData();
             }
             else
             {
                 MessageBox.Show(HttpErrorHelper.GetErrorMessage(deleteSubventionResponse));
-                return false;
+                Logger.Warn($"{HttpErrorHelper.GetErrorMessage(deleteSubventionResponse)}");
             }
         }
     }

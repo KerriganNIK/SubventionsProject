@@ -1,6 +1,8 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using NLog;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace SubventionsProject
         private SubventionCardForm subventhionCard;
         private ExcelModel excelModel;
         private DeleteModel deleteData;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public MainForm()
         {
@@ -29,6 +32,7 @@ namespace SubventionsProject
             #endregion
 
             CreateDataGrid();
+            Logger.Info("Основное окно со списком субвенций запущено");
         }
 
         public static MainForm Initialize()
@@ -38,27 +42,44 @@ namespace SubventionsProject
 
             return mainForm;
         }
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e) => OpenButton_Click(sender, e);
 
-        private void ExitButton_Click(object sender, EventArgs e) => Application.Restart();
+        private bool RegistryIsNotEmpty() => dataGridView1.Rows.Count > 0;
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Logger.Info("Пользователь выходит из системы");
+            Application.Restart();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Logger.Info("Программа выключается");
+            Application.Exit();
+        }
 
         private void FilterButton_Click(object sender, EventArgs e)
         {
+            Logger.Info("Запущено окно фильтра");
             filterForm = new FilterForm();
             filterForm.ShowDialog();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            Logger.Info("Запускает окно добавления субвенций");
+
             registrationCardForm = new RegistrationCardForm();
-            if (registrationCardForm.ShowDialog() == DialogResult.OK) UpdateData();
+            registrationCardForm.ShowDialog();
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
+            Logger.Info("Открывает окно с информацией о субвениции и транзакциях");
+            Logger.Debug("Передаёт данные о субвенции");
+
             subventhionCard = new SubventionCardForm(dataGridView1.CurrentRow.Cells[0].Value.ToString(), dataGridView1.CurrentRow.Cells[1].Value.ToString(), dataGridView1.CurrentRow.Cells[2].Value.ToString(), dataGridView1.CurrentRow.Cells[3].Value.ToString(), dataGridView1.CurrentRow.Cells[4].Value.ToString(), dataGridView1.CurrentRow.Cells[5].Value.ToString(), Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value.ToString()));
-            if (subventhionCard.ShowDialog() == DialogResult.OK) UpdateData();
+            subventhionCard.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -67,12 +88,18 @@ namespace SubventionsProject
             {
                 if (MessageBox.Show("Удалить выбранную субвенцию?", "Удаление субвенции", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    Logger.Info("Появляется окно с подтверждением удаления");
+
                     deleteData = new DeleteModel(dataGridView1.CurrentRow.Cells[6].Value.ToString());
-                    if (deleteData.Delete())
-                        dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                    deleteData.Delete();
                 }
             }
-            else MessageBox.Show("В таблице нет записей!", "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("В таблице нет записей!", "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Logger.Warn("В таблице отсутвуют записи");
+            }
         }
 
         public void OpenMainForm(Boolean check)
@@ -83,6 +110,8 @@ namespace SubventionsProject
             AddButton.Enabled = check;
             DeleteButton.Visible = check;
             DeleteButton.Enabled = check;
+            DistributeButton.Visible = check;
+            DistributeButton.Enabled = check;
 
             ShowDialog();
         }
@@ -109,7 +138,7 @@ namespace SubventionsProject
                         dataGridView1.Rows[numberOfRows].Cells[2].Value = subvention.Distributor.Name.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[3].Value = subvention.Year.Year.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[4].Value = subvention.Amount.ToString();
-                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year;
+                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToString().Substring(0,5);
                         dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
                         numberOfRows++;
                     }
@@ -120,6 +149,7 @@ namespace SubventionsProject
                 }
             }
 
+            Logger.Debug($"Заполняет DataGridView данными о доступных субвенциях, всего доступно: {dataGridView1.Rows.Count}");
             dataGridView1.Columns[6].Visible = false;
         }
 
@@ -129,8 +159,15 @@ namespace SubventionsProject
             {
                 excelModel = new ExcelModel();
                 excelModel.Export();
+
+                Logger.Info("Открылось окно Excel");
             }
-            else MessageBox.Show("Нечего экспоритровать", "Ошибка экспорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Нечего экспоритровать", "Ошибка экспорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Logger.Warn("Ошибка экспорта, отсутствие субвенций");
+            }
         }
 
         private void CreateDataGrid()
@@ -164,24 +201,19 @@ namespace SubventionsProject
             Column6.DataPropertyName = "Id";
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            OpenButton_Click(sender, e);
-        }
-
         private void DistributeButton_Click(object sender, EventArgs e)
         {
             if (RegistryIsNotEmpty())
             {
-                registrationCardForm = new RegistrationCardForm(dataGridView1.CurrentRow.Cells[6].Value.ToString());
-                if (registrationCardForm.ShowDialog() == DialogResult.OK) UpdateData();
-            }
-            else MessageBox.Show("Нечего распределять", "Ошибка распределения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+                Logger.Info("Запускает окно добавления");
 
-        private bool RegistryIsNotEmpty()
-        {
-            return dataGridView1.Rows.Count > 0;
+                registrationCardForm = new RegistrationCardForm(dataGridView1.CurrentRow.Cells[6].Value.ToString());
+                registrationCardForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Нечего распределять", "Ошибка распределения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

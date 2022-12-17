@@ -49,13 +49,14 @@
             this.ReceiverComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.municipalityText = new System.Windows.Forms.TextBox();
+            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // AddTransactionButton
             // 
             this.AddTransactionButton.Depth = 0;
-            this.AddTransactionButton.Location = new System.Drawing.Point(345, 646);
+            this.AddTransactionButton.Location = new System.Drawing.Point(342, 689);
             this.AddTransactionButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddTransactionButton.Name = "AddTransactionButton";
             this.AddTransactionButton.Primary = true;
@@ -92,7 +93,7 @@
             // ButtonClose
             // 
             this.ButtonClose.Depth = 0;
-            this.ButtonClose.Location = new System.Drawing.Point(663, 646);
+            this.ButtonClose.Location = new System.Drawing.Point(660, 689);
             this.ButtonClose.MouseState = MaterialSkin.MouseState.HOVER;
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Primary = true;
@@ -105,7 +106,7 @@
             // ButtonWrite
             // 
             this.ButtonWrite.Depth = 0;
-            this.ButtonWrite.Location = new System.Drawing.Point(34, 646);
+            this.ButtonWrite.Location = new System.Drawing.Point(31, 689);
             this.ButtonWrite.MouseState = MaterialSkin.MouseState.HOVER;
             this.ButtonWrite.Name = "ButtonWrite";
             this.ButtonWrite.Primary = true;
@@ -119,7 +120,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(269, 321);
+            this.label7.Location = new System.Drawing.Point(267, 350);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(325, 31);
             this.label7.TabIndex = 65;
@@ -134,7 +135,7 @@
             this.transactionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TransactionAmount,
             this.TransactionDate});
-            this.transactionsDataGridView.Location = new System.Drawing.Point(35, 355);
+            this.transactionsDataGridView.Location = new System.Drawing.Point(32, 398);
             this.transactionsDataGridView.MultiSelect = false;
             this.transactionsDataGridView.Name = "transactionsDataGridView";
             this.transactionsDataGridView.ReadOnly = true;
@@ -249,11 +250,23 @@
             this.municipalityText.Size = new System.Drawing.Size(385, 20);
             this.municipalityText.TabIndex = 74;
             // 
+            // materialRaisedButton1
+            // 
+            this.materialRaisedButton1.Depth = 0;
+            this.materialRaisedButton1.Location = new System.Drawing.Point(12, 314);
+            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton1.Name = "materialRaisedButton1";
+            this.materialRaisedButton1.Primary = true;
+            this.materialRaisedButton1.Size = new System.Drawing.Size(819, 2);
+            this.materialRaisedButton1.TabIndex = 77;
+            this.materialRaisedButton1.UseVisualStyleBackColor = true;
+            // 
             // SubventionCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 711);
+            this.ClientSize = new System.Drawing.Size(849, 779);
+            this.Controls.Add(this.materialRaisedButton1);
             this.Controls.Add(this.YearText);
             this.Controls.Add(this.AddTransactionButton);
             this.Controls.Add(this.AmountText);
@@ -275,6 +288,7 @@
             this.Controls.Add(this.receiverText);
             this.Name = "SubventionCardForm";
             this.Text = "Карточка субвенции";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SubventionCardForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.transactionsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -303,5 +317,6 @@
         private System.Windows.Forms.TextBox municipalityText;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionDate;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
     }
 }

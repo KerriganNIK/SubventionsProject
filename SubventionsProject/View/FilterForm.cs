@@ -1,6 +1,8 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using NLog;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace SubventionsProject
     public partial class FilterForm : MaterialForm
     {
         private FilterModel filterModel;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public FilterForm()
         {
@@ -27,18 +30,24 @@ namespace SubventionsProject
             LoadDataComboBox();
         }
 
-        private void CloseButton_Click(object sender, EventArgs e) => Close();
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Logger.Info("Закрывает окно фильтрации");
+
+            Close();
+        }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
             filterModel = new FilterModel(comboGetSubvention.Text, comboYears.Text, comboSum.Text, comboDate.Text);
             filterModel.FilterDate();
-            Close();
         }
 
         private void LoadDataComboBox()
         {
             var getSubventionResponse = DataBase.Client.GetAsync(DataBase.Uri + "/subventions").Result;
+
+            Logger.Debug($"Заполняет ComboBox данными субвенций");
 
             if (getSubventionResponse.IsSuccessStatusCode)
             {
@@ -61,6 +70,7 @@ namespace SubventionsProject
 
                 ComboBox[] comboBoxs = { comboGetSubvention, comboYears, comboSum, comboDate };
 
+                Logger.Debug("Убирает повторяющие данные субвенций");
                 for (int i = 0; i < comboBoxs.Length; i++)
                 {
                     DistinctData(comboBoxs[i]);
@@ -77,6 +87,13 @@ namespace SubventionsProject
                 .ToArray();
             comboBox.Items.Clear();
             comboBox.Items.AddRange(array);
+        }
+
+        private void FilterForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Logger.Info("Закрывает окно фильтрации");
+
+            Close();
         }
     }
 }

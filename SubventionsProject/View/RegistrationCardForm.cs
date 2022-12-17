@@ -1,6 +1,8 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using NLog;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace SubventionsProject
     {
         private RegistrationModel registrationModel;
         private string parentSubventionId;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
 
         public RegistrationCardForm(string parentSubventionId = null)
         {
@@ -28,12 +32,21 @@ namespace SubventionsProject
             LoadDataComboBox();
 
             this.parentSubventionId = parentSubventionId;
-            if (parentSubventionId == null) Text = "Создание субвенции верхнего уровня";
-            else Text = "Распределение субвенции";
+
+            if (parentSubventionId == null)
+            {
+                Text = "Создание субвенции верхнего уровня";
+            }
+            else
+            {
+                Text = "Распределение субвенции";
+            }
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            Logger.Info("Окно добавления субвенций закрыто");
+
             DialogResult = DialogResult.Cancel;
             Close();
         }
@@ -43,12 +56,15 @@ namespace SubventionsProject
             if (comboReceiver.Text != "" && AmountTextBox.Text != "" && YearTextbox.Text != "")
             {
                 registrationModel = new RegistrationModel(Convert.ToInt32(comboReceiver.SelectedValue.ToString()), Convert.ToInt32(AmountTextBox.Text), Convert.ToInt32(YearTextbox.Text.ToString()));
+
                 if (parentSubventionId == null)
                 {
                     if (registrationModel.AddSubvention())
                     {
                         DialogResult = DialogResult.OK;
                         Close();
+
+                        Logger.Debug("Добавляет субвеницию верхнего уровня");
                     }
                 }
                 else
@@ -57,12 +73,16 @@ namespace SubventionsProject
                     {
                         DialogResult = DialogResult.OK;
                         Close();
+
+                        Logger.Debug("Распределяет субвенцию");
                     }
                 }
             }
             else
             {
                 MessageBox.Show("Заполните все поля!");
+
+                Logger.Warn("Не все поля заполнены");
             }
         }
 
@@ -90,6 +110,15 @@ namespace SubventionsProject
             comboReceiver.DataSource = dataTable;
             comboReceiver.DisplayMember = "Name";
             comboReceiver.ValueMember = "Id";
+
+            Logger.Debug($"Заполняет ComboBox данными организаций, всего доступно: {comboReceiver.Items.Count}");
+        }
+
+        private void RegistrationCardForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Logger.Info("Окно добавления субвенций закрыто");
+
+            Close();
         }
     }
 }

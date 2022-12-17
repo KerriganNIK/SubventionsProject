@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using NLog;
 using SubventionsProject.Data;
 using SubventionsProject.Model;
 using System;
@@ -21,6 +23,7 @@ namespace SubventionsProject
         private MainForm mainForm;
         public static string TypeUser { get; set; }
         public static int OrganizationId { get; set; }
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public AuthenticationModel(AuthenticationForm authorization)
         {
@@ -34,6 +37,7 @@ namespace SubventionsProject
 
             var loginResponse = DataBase.Client.PostAsync(DataBase.Uri + "/auth/login", new StringContent(json, Encoding.UTF8, "application/json")).Result;
 
+            Logger.Debug("Производится вход в систему пользователем");
             if (loginResponse.IsSuccessStatusCode)
             {
                 LoginResponse deserializedResponse = JsonConvert.DeserializeObject<LoginResponse>(loginResponse.Content.ReadAsStringAsync().Result);
@@ -52,6 +56,7 @@ namespace SubventionsProject
             else
             {
                 MessageBox.Show(HttpErrorHelper.GetErrorMessage(loginResponse));
+                Logger.Warn($"{HttpErrorHelper.GetErrorMessage(loginResponse)}");
             }
         }
 

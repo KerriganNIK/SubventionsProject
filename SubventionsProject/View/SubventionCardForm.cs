@@ -8,14 +8,18 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using SubventionsProject.Data;
-
+using NLog;
 
 namespace SubventionsProject
 {
     public partial class SubventionCardForm : MaterialForm
     {
-        private SubventionCardModel subventionCardModel;
         private int subventionId;
+        private const Boolean Admin = false;
+        private const Boolean User = true;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private MainForm mainForm;
+
         public SubventionCardForm(string municipality, string getSubvention, string distributorSubvention, string yearsSubvention, string amountMoney, string dateMoney, int subventionId)
         {
             InitializeComponent();
@@ -27,6 +31,9 @@ namespace SubventionsProject
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             #endregion
 
+            Logger.Debug("Заполняет поля данными о субвенции");
+            Logger.Debug("Заполняет DataGridView данными о транзакциях");
+
             municipalityText.Text = municipality;
             distributorText.Text = distributorSubvention;
             YearText.Text = yearsSubvention;
@@ -36,23 +43,25 @@ namespace SubventionsProject
             RefillTransactionTable();
             ManageUserButtons(getSubvention, dateMoney);
             LoadDataComboBox(getSubvention);
+
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd MMMM";
         }
 
         private void ButtonWrite_Click(object sender, EventArgs e)
         {
             var receiverId = Convert.ToInt32(ReceiverComboBox.SelectedValue);
             var updateModel = new UpdateModel(Convert.ToInt32(AmountText.Text), Convert.ToInt32(YearText.Text), receiverId, subventionId);
-            if (updateModel.UpdateSubvention() == true)
-            {
-                DialogResult = DialogResult.OK;
-                Close();
-            }
+
+            updateModel.UpdateSubvention();
+            Close();
         }
 
         private void SubventhionCardForm_FormClosed(object sender, FormClosedEventArgs e) => Close();
 
         private void ButtonClose_Click(object sender, EventArgs e)
         {
+            Logger.Info("Окно информации о субвенции и транзакций закрыто");
             DialogResult = DialogResult.Cancel;
             Close();
         }
@@ -61,11 +70,14 @@ namespace SubventionsProject
         {
             if (transactionsDataGridView.Rows.Count != 0)
                 transactionsDataGridView.Rows.Clear();
+
             var getSubventionResponse = DataBase.Client.GetAsync(DataBase.Uri + $"/subventions/{subventionId}").Result;
+
             if (getSubventionResponse.IsSuccessStatusCode)
             {
                 var deserializedResponse = JsonConvert.DeserializeObject<GetSubventionResponse>(getSubventionResponse.Content.ReadAsStringAsync().Result);
                 var numberOfRows = 0;
+
                 foreach (var transaction in deserializedResponse.Transactions)
                 {
                     transactionsDataGridView.Rows.Add();
@@ -77,6 +89,7 @@ namespace SubventionsProject
             else
             {
                 MessageBox.Show(HttpErrorHelper.GetErrorMessage(getSubventionResponse));
+                Logger.Warn($"{HttpErrorHelper.GetErrorMessage(getSubventionResponse)}");
             }
         }
 
@@ -104,18 +117,19 @@ namespace SubventionsProject
                 AddTransactionButton.Visible = false;
                 receiverText.Text = getSubvention;
                 DateText.Text = dateMoney;
-                TurnButtonsVisibility(true);
+                TurnButtonsVisibility(User);
             }
             else if (AuthenticationModel.TypeUser == AuthenticationModel.AdminCheck)
             {
                 ReceiverComboBox.Text = getSubvention;
                 dateTimePicker1.Text = dateMoney;
-                TurnButtonsVisibility(false);
+                TurnButtonsVisibility(Admin);
             }
         }
 
         private void AddTransactionButton_Click(object sender, EventArgs e)
         {
+            Logger.Info("Открывает окно добавления транзакции");
             new TransactionForm(subventionId).ShowDialog();
             RefillTransactionTable();
         }
@@ -154,6 +168,15 @@ namespace SubventionsProject
             ReceiverComboBox.DisplayMember = "Name";
             ReceiverComboBox.ValueMember = "Id";
             ReceiverComboBox.SelectedIndex = numberValue;
+
+            Logger.Debug($"Заполняет ComboBox данными организаций, всего доступно: {ReceiverComboBox.Items.Count}");
+        }
+
+        private void SubventionCardForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Logger.Info("Окно информации о субвенции и транзакций закрыто");
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

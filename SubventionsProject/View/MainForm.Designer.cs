@@ -44,7 +44,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(301, 75);
+            this.label1.Location = new System.Drawing.Point(386, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(192, 24);
             this.label1.TabIndex = 1;
@@ -53,7 +53,7 @@
             // AddButton
             // 
             this.AddButton.Depth = 0;
-            this.AddButton.Location = new System.Drawing.Point(821, 102);
+            this.AddButton.Location = new System.Drawing.Point(847, 111);
             this.AddButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddButton.Name = "AddButton";
             this.AddButton.Primary = true;
@@ -66,7 +66,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Depth = 0;
-            this.DeleteButton.Location = new System.Drawing.Point(821, 240);
+            this.DeleteButton.Location = new System.Drawing.Point(847, 156);
             this.DeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Primary = true;
@@ -79,7 +79,7 @@
             // OpenButton
             // 
             this.OpenButton.Depth = 0;
-            this.OpenButton.Location = new System.Drawing.Point(821, 195);
+            this.OpenButton.Location = new System.Drawing.Point(847, 204);
             this.OpenButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.OpenButton.Name = "OpenButton";
             this.OpenButton.Primary = true;
@@ -92,7 +92,7 @@
             // FilterButton
             // 
             this.FilterButton.Depth = 0;
-            this.FilterButton.Location = new System.Drawing.Point(821, 370);
+            this.FilterButton.Location = new System.Drawing.Point(847, 336);
             this.FilterButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.FilterButton.Name = "FilterButton";
             this.FilterButton.Primary = true;
@@ -105,7 +105,7 @@
             // ExportButton
             // 
             this.ExportButton.Depth = 0;
-            this.ExportButton.Location = new System.Drawing.Point(821, 418);
+            this.ExportButton.Location = new System.Drawing.Point(847, 384);
             this.ExportButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.ExportButton.Name = "ExportButton";
             this.ExportButton.Primary = true;
@@ -118,7 +118,7 @@
             // ExitButton
             // 
             this.ExitButton.Depth = 0;
-            this.ExitButton.Location = new System.Drawing.Point(821, 513);
+            this.ExitButton.Location = new System.Drawing.Point(847, 522);
             this.ExitButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Primary = true;
@@ -134,19 +134,19 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 102);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 111);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(792, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(785, 450);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // DistributeButton
             // 
             this.DistributeButton.Depth = 0;
-            this.DistributeButton.Location = new System.Drawing.Point(821, 150);
+            this.DistributeButton.Location = new System.Drawing.Point(847, 249);
             this.DistributeButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.DistributeButton.Name = "DistributeButton";
             this.DistributeButton.Primary = true;
@@ -160,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(963, 564);
+            this.ClientSize = new System.Drawing.Size(1001, 592);
             this.Controls.Add(this.DistributeButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ExitButton);

@@ -155,6 +155,7 @@
             this.Controls.Add(this.label2);
             this.Name = "FilterForm";
             this.Text = "Параметры фильтрации";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FilterForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
