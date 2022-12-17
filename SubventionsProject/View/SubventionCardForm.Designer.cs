@@ -47,7 +47,6 @@
             this.distributorText = new System.Windows.Forms.TextBox();
             this.DateText = new System.Windows.Forms.TextBox();
             this.ReceiverComboBox = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.municipalityText = new System.Windows.Forms.TextBox();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsDataGridView)).BeginInit();
@@ -223,8 +222,9 @@
             // 
             // DateText
             // 
-            this.DateText.Location = new System.Drawing.Point(390, 264);
+            this.DateText.Location = new System.Drawing.Point(390, 268);
             this.DateText.Name = "DateText";
+            this.DateText.ReadOnly = true;
             this.DateText.Size = new System.Drawing.Size(385, 20);
             this.DateText.TabIndex = 75;
             // 
@@ -235,13 +235,6 @@
             this.ReceiverComboBox.Name = "ReceiverComboBox";
             this.ReceiverComboBox.Size = new System.Drawing.Size(385, 21);
             this.ReceiverComboBox.TabIndex = 62;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(390, 264);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(385, 20);
-            this.dateTimePicker1.TabIndex = 69;
             // 
             // municipalityText
             // 
@@ -282,7 +275,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DateText);
             this.Controls.Add(this.ReceiverComboBox);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.municipalityText);
             this.Controls.Add(this.distributorText);
             this.Controls.Add(this.receiverText);
@@ -313,7 +305,6 @@
         private System.Windows.Forms.TextBox distributorText;
         private System.Windows.Forms.TextBox DateText;
         public System.Windows.Forms.ComboBox ReceiverComboBox;
-        public System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox municipalityText;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionDate;

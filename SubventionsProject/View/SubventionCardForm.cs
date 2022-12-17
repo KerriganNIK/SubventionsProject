@@ -43,9 +43,6 @@ namespace SubventionsProject
             RefillTransactionTable();
             ManageUserButtons(getSubvention, dateMoney);
             LoadDataComboBox(getSubvention);
-
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd MMMM";
         }
 
         private void ButtonWrite_Click(object sender, EventArgs e)
@@ -77,13 +74,14 @@ namespace SubventionsProject
             {
                 var deserializedResponse = JsonConvert.DeserializeObject<GetSubventionResponse>(getSubventionResponse.Content.ReadAsStringAsync().Result);
                 var numberOfRows = 0;
-
+                DateText.Text = "—";
                 foreach (var transaction in deserializedResponse.Transactions)
                 {
                     transactionsDataGridView.Rows.Add();
                     transactionsDataGridView.Rows[numberOfRows].Cells[0].Value = transaction.Amount;
                     transactionsDataGridView.Rows[numberOfRows].Cells[1].Value = transaction.Date;
                     numberOfRows++;
+                    DateText.Text = transaction.Date.ToShortDateString();
                 }
             }
             else
@@ -102,10 +100,6 @@ namespace SubventionsProject
             receiverText.Enabled = check;
             receiverText.ReadOnly = check;
             municipalityText.Enabled = false;
-            DateText.ReadOnly = check;
-            DateText.Enabled = check;
-            DateText.Visible = check;
-            dateTimePicker1.Enabled = false;
         }
 
         public void ManageUserButtons(string getSubvention, string dateMoney)
@@ -122,7 +116,6 @@ namespace SubventionsProject
             else if (AuthenticationModel.TypeUser == AuthenticationModel.AdminCheck)
             {
                 ReceiverComboBox.Text = getSubvention;
-                dateTimePicker1.Text = dateMoney;
                 TurnButtonsVisibility(Admin);
             }
         }

@@ -6,6 +6,7 @@ using NLog;
 using SubventionsProject.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SubventionsProject
@@ -147,7 +148,9 @@ namespace SubventionsProject
                         dataGridView1.Rows[numberOfRows].Cells[2].Value = subvention.Distributor.Name.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[3].Value = subvention.Year.Year.ToString();
                         dataGridView1.Rows[numberOfRows].Cells[4].Value = subvention.Amount.ToString();
-                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Year.ToShortDateString();
+                        dataGridView1.Rows[numberOfRows].Cells[5].Value = subvention.Transactions.Count > 0
+                            ? subvention.Transactions.Last().Date.ToShortDateString()
+                            : "—";
                         dataGridView1.Rows[numberOfRows].Cells[6].Value = subvention.Id.ToString();
                         numberOfRows++;
                     }
@@ -203,7 +206,7 @@ namespace SubventionsProject
             Column3.Width = 70;
             Column4.HeaderText = "Объём субвенции";
             Column4.DataPropertyName = "Amount";
-            Column5.HeaderText = "Дата получения";
+            Column5.HeaderText = "Дата получения денежных средств";
             Column5.DataPropertyName = "Date";
             Column5.Width = 135;
             Column6.HeaderText = "Id субвенции";
